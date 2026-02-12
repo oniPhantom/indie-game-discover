@@ -1,6 +1,6 @@
 // src/index.ts - インディーゲーム発掘 メインエントリポイント
 
-import { fetchNewIndieGames, fetchGameDetails, fetchGameReviews } from "./steam.js";
+import { fetchNewIndieGames, fetchPopularIndieGames, fetchGameDetails, fetchGameReviews } from "./steam.js";
 import { getPromptForTask } from "./prompt-loader.js";
 import { generateGameIntro, translateReviewToKansai } from "./generator.js";
 import {
@@ -10,7 +10,7 @@ import {
   type ArticleData,
   type KansaiReview,
 } from "./article-builder.js";
-import { loadState, saveState } from "./state.js";
+import { loadState, saveState, type FailedApp } from "./state.js";
 
 // ---------- 設定 ----------
 
@@ -22,6 +22,9 @@ const REVIEWS_PER_GAME = 3;
 
 /** API呼び出し間の待機時間（ms） */
 const API_DELAY = 1500;
+
+/** failCount がこの値以上のゲームはスキップ */
+const MAX_FAIL_COUNT = 3;
 
 // ---------- ヘルパー ----------
 
@@ -47,25 +50,49 @@ async function main(): Promise<void> {
   ]);
   console.log("[index] プロンプト読み込み完了");
 
-  // 3. 新しいインディーゲーム一覧取得
-  const games = await fetchNewIndieGames(20);
-  console.log(`[index] Steam から ${games.length} 件のインディーゲームを取得`);
+  // 3. 新しいインディーゲーム一覧取得（Steam Store + SteamSpy をマージ）
+  const [storeGames, spyGames] = await Promise.all([
+    fetchNewIndieGames(20),
+    fetchPopularIndieGames(20).catch((err) => {
+      console.warn("[index] SteamSpy API エラー（Steam Store のみ使用）:", err);
+      return [];
+    }),
+  ]);
 
-  // 4. 処理済みを除外
-  const newGames = games.filter(
-    (g) => !state.processedAppIds.includes(g.appId),
+  // 重複排除してマージ（Store が先、SteamSpy で補完）
+  const seenIds = new Set(storeGames.map((g) => g.appId));
+  const mergedGames = [...storeGames];
+  for (const g of spyGames) {
+    if (!seenIds.has(g.appId)) {
+      seenIds.add(g.appId);
+      mergedGames.push(g);
+    }
+  }
+  console.log(
+    `[index] Steam Store: ${storeGames.length}件, SteamSpy: ${spyGames.length}件 → マージ後: ${mergedGames.length}件`,
   );
-  console.log(`[index] 未処理: ${newGames.length} 件`);
+
+  // 4. 処理済み・リトライ上限超えを除外
+  const skippedAppIds = new Set(
+    state.failedAppIds
+      .filter((f) => f.failCount >= MAX_FAIL_COUNT)
+      .map((f) => f.appId),
+  );
+  const newGames = mergedGames.filter(
+    (g) => !state.processedAppIds.includes(g.appId) && !skippedAppIds.has(g.appId),
+  );
+  console.log(`[index] 未処理: ${newGames.length} 件 (リトライ上限超え: ${skippedAppIds.size} 件)`);
 
   if (newGames.length === 0) {
     console.log("[index] 新しいゲームはありません");
-    await saveState({ ...state, lastRunAt: new Date().toISOString() });
+    await saveState({ ...state, lastRunAt: new Date().toISOString(), failedAppIds: state.failedAppIds });
     return;
   }
 
   // 5. 上限数だけ処理
   const targets = newGames.slice(0, MAX_GAMES_PER_RUN);
   const processedIds: number[] = [];
+  const failedAppIds: FailedApp[] = [...state.failedAppIds];
 
   for (const game of targets) {
     console.log(`\n[index] === ${game.name} (appId: ${game.appId}) ===`);
@@ -132,15 +159,20 @@ async function main(): Promise<void> {
       const markdown = buildArticle(articleData);
 
       // 5f. 記事を保存
-      const slug = generateSlug(details.name);
+      const slug = generateSlug(details.name, details.appId);
       await saveArticle(slug, markdown);
-      console.log(`[index] 記事を保存: content/games/${slug}.md`);
+      console.log(`[index] 記事を保存: src/content/games/${slug}.md`);
 
       processedIds.push(game.appId);
     } catch (err) {
       console.error(`[index] ${game.name} の処理でエラー:`, err);
-      // エラーが発生しても他のゲームの処理は継続
-      processedIds.push(game.appId);
+      // failedAppIds に記録（リトライ可能にするため processedIds には入れない）
+      const existing = failedAppIds.find((f) => f.appId === game.appId);
+      if (existing) {
+        existing.failCount += 1;
+      } else {
+        failedAppIds.push({ appId: game.appId, failCount: 1 });
+      }
     }
   }
 
@@ -148,6 +180,7 @@ async function main(): Promise<void> {
   await saveState({
     lastRunAt: new Date().toISOString(),
     processedAppIds: [...state.processedAppIds, ...processedIds],
+    failedAppIds,
   });
 
   console.log(

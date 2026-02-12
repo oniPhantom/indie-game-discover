@@ -1,0 +1,60 @@
+{
+  "$ref": "#/definitions/games",
+  "definitions": {
+    "games": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "appId": {
+          "type": "number"
+        },
+        "genres": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "price": {
+          "type": "string"
+        },
+        "releaseDate": {
+          "type": "string"
+        },
+        "developer": {
+          "type": "string"
+        },
+        "reviewScore": {
+          "type": "string"
+        },
+        "reviewPercentage": {
+          "type": "number"
+        },
+        "headerImage": {
+          "type": "string"
+        },
+        "generatedAt": {
+          "type": "string"
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "appId",
+        "genres",
+        "price",
+        "releaseDate",
+        "developer",
+        "reviewScore",
+        "reviewPercentage",
+        "headerImage",
+        "generatedAt"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

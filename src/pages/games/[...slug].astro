@@ -1,0 +1,19 @@
+---
+import { getCollection, render } from 'astro:content';
+import GameLayout from '../../layouts/GameLayout.astro';
+
+export async function getStaticPaths() {
+  const games = await getCollection('games');
+  return games.map((game) => ({
+    params: { slug: game.id },
+    props: { game },
+  }));
+}
+
+const { game } = Astro.props;
+const { Content } = await render(game);
+---
+
+<GameLayout title={game.data.title}>
+  <Content />
+</GameLayout>

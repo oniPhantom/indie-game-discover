@@ -4,15 +4,23 @@
   "type": "module",
   "scripts": {
     "start": "tsx src/index.ts",
-    "build": "tsc",
-    "typecheck": "tsc --noEmit"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "generate": "tsx src/index.ts",
+    "typecheck": "astro check && tsc --noEmit"
   },
   "dependencies": {
-    "js-yaml": "^4.1.0"
+    "@astrojs/cloudflare": "^12.6.12",
+    "astro": "^5.17.1",
+    "js-yaml": "^4.1.0",
+    "wanakana": "^5.3.1"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.6",
     "@types/js-yaml": "^4.0.9",
     "@types/node": "^22.10.0",
+    "@types/wanakana": "^4.0.6",
     "tsx": "^4.19.0",
     "typescript": "^5.7.0"
   }

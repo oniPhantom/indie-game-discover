@@ -1,0 +1,15 @@
+---
+interface Props {
+  text: string;
+  votedUp: boolean;
+  playtimeHours: number;
+}
+
+const { text, votedUp, playtimeHours } = Astro.props;
+const emoji = votedUp ? '⭐' : '👎';
+---
+
+<blockquote>
+  <p>{emoji} "{text}"</p>
+  <footer>— プレイ時間: {playtimeHours}時間</footer>
+</blockquote>

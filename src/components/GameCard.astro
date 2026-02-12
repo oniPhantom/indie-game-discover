@@ -1,0 +1,53 @@
+---
+interface Props {
+  slug: string;
+  title: string;
+  headerImage: string;
+  genres: string[];
+  price: string;
+  developer: string;
+  reviewScore: string;
+}
+
+const { slug, title, headerImage, genres, price, developer, reviewScore } = Astro.props;
+---
+
+<a href={`/games/${slug}/`} class="card">
+  <img src={headerImage} alt={title} loading="lazy" />
+  <div class="card-body">
+    <h2>{title}</h2>
+    <div class="meta">
+      <span class="genre">{genres.slice(0, 2).join(', ')}</span>
+      <span class="price">{price}</span>
+    </div>
+    <p class="dev">{developer}</p>
+    <p class="score">{reviewScore}</p>
+  </div>
+</a>
+
+<style>
+  .card {
+    display: block;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(124, 58, 237, 0.2);
+  }
+  .card img {
+    width: 100%;
+    aspect-ratio: 460 / 215;
+    object-fit: cover;
+  }
+  .card-body { padding: 1rem; }
+  .card h2 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+  .meta { display: flex; gap: 0.5rem; font-size: 0.85rem; opacity: 0.8; }
+  .dev { font-size: 0.85rem; opacity: 0.7; margin-top: 0.25rem; }
+  .score { font-size: 0.85rem; color: var(--accent); margin-top: 0.25rem; }
+</style>

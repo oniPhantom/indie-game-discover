@@ -3,6 +3,7 @@
 import { writeFile, mkdir } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
+import { toRomaji } from "wanakana";
 
 // ── 型定義 ─────────────────────────────────────
 
@@ -39,16 +40,21 @@ const PROJECT_ROOT = path.resolve(__dirname, "..");
 
 /**
  * ゲーム名からURL用スラグを生成する。
- * 小文字化、スペース→ハイフン、特殊文字除去。
+ * WanaKana でカナ→ローマ字変換後、appId プレフィックスを付与して一意性を保証。
+ * 例: "ゼルダの伝説" (appId: 12345) → "12345-zerudano"
+ * 例: "Hollow Knight" (appId: 67890) → "67890-hollow-knight"
  */
-export function generateSlug(name: string): string {
-  return name
+export function generateSlug(name: string, appId: number): string {
+  const romanized = toRomaji(name);
+  const slug = romanized
     .toLowerCase()
     .trim()
     .replace(/\s+/g, "-")
     .replace(/[^a-z0-9-]/g, "")
     .replace(/-+/g, "-")
     .replace(/^-|-$/g, "");
+
+  return `${appId}-${slug}`;
 }
 
 /**
@@ -114,7 +120,7 @@ export async function saveArticle(
   slug: string,
   content: string,
 ): Promise<void> {
-  const gamesDir = path.join(PROJECT_ROOT, "content", "games");
+  const gamesDir = path.join(PROJECT_ROOT, "src", "content", "games");
   await mkdir(gamesDir, { recursive: true });
 
   const filePath = path.join(gamesDir, `${slug}.md`);

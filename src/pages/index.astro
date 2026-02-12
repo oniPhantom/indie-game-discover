@@ -1,0 +1,47 @@
+---
+import { getCollection } from 'astro:content';
+import GameLayout from '../layouts/GameLayout.astro';
+import GameCard from '../components/GameCard.astro';
+
+const games = (await getCollection('games')).sort(
+  (a, b) => new Date(b.data.generatedAt).getTime() - new Date(a.data.generatedAt).getTime()
+);
+---
+
+<GameLayout title="ホーム">
+  <h1>Indie Game Discover</h1>
+  <p>AIが見つけたインディーゲームを関西弁レビューで紹介するサイトやで！</p>
+
+  <div class="grid">
+    {games.map((game) => (
+      <GameCard
+        slug={game.id}
+        title={game.data.title}
+        headerImage={game.data.headerImage}
+        genres={game.data.genres}
+        price={game.data.price}
+        developer={game.data.developer}
+        reviewScore={game.data.reviewScore}
+      />
+    ))}
+  </div>
+
+  {games.length === 0 && (
+    <p class="empty">まだ記事がないで。`npm run generate` で生成してな！</p>
+  )}
+</GameLayout>
+
+<style>
+  h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+  p { margin-bottom: 2rem; opacity: 0.8; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  .empty {
+    text-align: center;
+    padding: 4rem 0;
+    font-size: 1.2rem;
+  }
+</style>
