@@ -2,46 +2,90 @@
 import { getCollection } from 'astro:content';
 import GameLayout from '../layouts/GameLayout.astro';
 import GameCard from '../components/GameCard.astro';
+import HeroSection from '../components/HeroSection.astro';
 
 const games = (await getCollection('games')).sort(
   (a, b) => new Date(b.data.generatedAt).getTime() - new Date(a.data.generatedAt).getTime()
 );
+
+// フィーチャードゲーム選定（最初の1件）
+const [featured, ...otherGames] = games;
 ---
 
 <GameLayout title="ホーム">
-  <h1>Indie Game Discover</h1>
-  <p>AIが見つけたインディーゲームを関西弁レビューで紹介するサイトやで！</p>
-
-  <div class="grid">
-    {games.map((game) => (
-      <GameCard
-        slug={game.id}
-        title={game.data.title}
-        headerImage={game.data.headerImage}
-        genres={game.data.genres}
-        price={game.data.price}
-        developer={game.data.developer}
-        reviewScore={game.data.reviewScore}
-      />
-    ))}
-  </div>
-
-  {games.length === 0 && (
+  {games.length === 0 ? (
     <p class="empty">まだ記事がないで。`npm run generate` で生成してな！</p>
+  ) : (
+    <>
+      {/* ヒーローセクション（フィーチャードゲーム） */}
+      <HeroSection
+        title={featured.data.title}
+        headerImage={featured.data.headerImage}
+        slug={featured.id}
+        genres={featured.data.genres}
+        reviewPercentage={featured.data.reviewPercentage}
+      />
+
+      {/* ゲーム一覧セクション */}
+      <section class="games-section">
+        <h2>🎮 ゲーム一覧</h2>
+        <div class="grid">
+          {otherGames.map((game) => (
+            <GameCard
+              slug={game.id}
+              title={game.data.title}
+              headerImage={game.data.headerImage}
+              genres={game.data.genres}
+              price={game.data.price}
+              developer={game.data.developer}
+              reviewScore={game.data.reviewScore}
+              reviewPercentage={game.data.reviewPercentage}
+            />
+          ))}
+        </div>
+      </section>
+    </>
   )}
 </GameLayout>
 
 <style>
-  h1 { font-size: 2rem; margin-bottom: 0.5rem; }
-  p { margin-bottom: 2rem; opacity: 0.8; }
+  /* ゲーム一覧セクション */
+  .games-section {
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 0 1rem;
+  }
+
+  .games-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 3px solid var(--accent);
+  }
+
+  /* グリッド */
   .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 1.5rem;
+    margin-top: 2rem;
   }
+
+  /* 0件時のフォールバック */
   .empty {
     text-align: center;
-    padding: 4rem 0;
+    padding: 4rem 1rem;
     font-size: 1.2rem;
+  }
+
+  /* レスポンシブ調整 */
+  @media (max-width: 768px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+
+    .games-section h2 {
+      font-size: 1.5rem;
+    }
   }
 </style>

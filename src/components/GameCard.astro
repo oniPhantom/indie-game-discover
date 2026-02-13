@@ -7,21 +7,56 @@ interface Props {
   price: string;
   developer: string;
   reviewScore: string;
+  reviewPercentage?: number;
 }
 
-const { slug, title, headerImage, genres, price, developer, reviewScore } = Astro.props;
+const { slug, title, headerImage, genres, price, developer, reviewScore, reviewPercentage } = Astro.props;
+
+// レビュースコア色分けロジック
+const getScoreBadge = (percentage: number) => {
+  if (percentage >= 90) return { color: '#22c55e', label: '最高評価' };
+  if (percentage >= 75) return { color: '#84cc16', label: '好評' };
+  if (percentage >= 60) return { color: '#eab308', label: '賛否両論' };
+  return { color: '#ef4444', label: '不評' };
+};
+
+// reviewPercentageがundefinedの場合はnullにする
+const scoreBadge = reviewPercentage !== undefined ? getScoreBadge(reviewPercentage) : null;
+
+// 価格バッジ判定
+const isFree = price.toLowerCase().includes('無料') || price.toLowerCase().includes('free');
 ---
 
 <a href={`/games/${slug}/`} class="card">
   <img src={headerImage} alt={title} loading="lazy" />
   <div class="card-body">
     <h2>{title}</h2>
-    <div class="meta">
-      <span class="genre">{genres.slice(0, 2).join(', ')}</span>
-      <span class="price">{price}</span>
+
+    <!-- ジャンルタグ（最大3つ） -->
+    <div class="genres">
+      {genres.slice(0, 3).map(genre => (
+        <span class="genre-pill">{genre}</span>
+      ))}
     </div>
+
+    <!-- 開発者 -->
     <p class="dev">{developer}</p>
-    <p class="score">{reviewScore}</p>
+
+    <!-- スコアと価格 -->
+    <div class="footer">
+      {scoreBadge && (
+        <div class="score-badge" style={`background-color: ${scoreBadge.color};`}>
+          <span class="score-label">{scoreBadge.label}</span>
+          <span class="score-value">{reviewScore}</span>
+        </div>
+      )}
+
+      {isFree ? (
+        <span class="price-badge free">無料</span>
+      ) : (
+        <span class="price-badge">{price}</span>
+      )}
+    </div>
   </div>
 </a>
 
@@ -34,20 +69,106 @@ const { slug, title, headerImage, genres, price, developer, reviewScore } = Astr
     overflow: hidden;
     text-decoration: none;
     color: inherit;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
+
+  /* ホバーアニメーション強化 */
   .card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(124, 58, 237, 0.2);
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 12px 32px rgba(124, 58, 237, 0.4),
+                0 0 20px rgba(124, 58, 237, 0.3);
   }
+
   .card img {
     width: 100%;
     aspect-ratio: 460 / 215;
     object-fit: cover;
   }
-  .card-body { padding: 1rem; }
-  .card h2 { font-size: 1.1rem; margin-bottom: 0.5rem; }
-  .meta { display: flex; gap: 0.5rem; font-size: 0.85rem; opacity: 0.8; }
-  .dev { font-size: 0.85rem; opacity: 0.7; margin-top: 0.25rem; }
-  .score { font-size: 0.85rem; color: var(--accent); margin-top: 0.25rem; }
+
+  .card-body {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .card h2 {
+    font-size: 1.1rem;
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  /* ジャンルタグ（pill形式） */
+  .genres {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .genre-pill {
+    display: inline-block;
+    padding: 0.25rem 0.6rem;
+    font-size: 0.75rem;
+    background: rgba(124, 58, 237, 0.2);
+    color: var(--text);
+    border: 1px solid rgba(124, 58, 237, 0.4);
+    border-radius: 12px;
+    font-weight: 500;
+  }
+
+  /* 開発者 */
+  .dev {
+    font-size: 0.85rem;
+    opacity: 0.7;
+    margin: 0;
+  }
+
+  /* フッター（スコア + 価格） */
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    padding-top: 0.5rem;
+  }
+
+  /* スコアバッジ */
+  .score-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.4rem 0.7rem;
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+    gap: 0.1rem;
+  }
+
+  .score-label {
+    font-size: 0.65rem;
+    opacity: 0.9;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .score-value {
+    font-size: 0.9rem;
+  }
+
+  /* 価格バッジ */
+  .price-badge {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text);
+    padding: 0.4rem 0.7rem;
+    border-radius: 8px;
+    background: rgba(124, 58, 237, 0.15);
+    border: 1px solid rgba(124, 58, 237, 0.3);
+  }
+
+  .price-badge.free {
+    background: #22c55e;
+    color: white;
+    border: none;
+  }
 </style>
