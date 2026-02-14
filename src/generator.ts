@@ -140,3 +140,19 @@ export async function generateKansaiHighlights(
   const reviewsText = reviews.map((r) => r.reviewText).join("\n---\n");
   return generateText(systemPrompt, reviewsText, config);
 }
+
+/**
+ * ゲーム詳細情報から関西弁キャッチコピーを生成する。
+ */
+export async function generateKansaiCatch(
+  gameDetails: GameDetails,
+  systemPrompt: string,
+  config: ModelConfig,
+): Promise<string> {
+  const userContent = [
+    `- タイトル: ${gameDetails.name}`,
+    `- ジャンル: ${gameDetails.genres.join(", ")}`,
+    `- 説明: ${gameDetails.description}`,
+  ].join("\n");
+  return generateText(systemPrompt, userContent, config);
+}

@@ -15,3 +15,9 @@ kansai_highlights:
   temperature: 0.85       # 関西弁の自然さを保つ
   max_tokens: 500         # 3段落程度
   prompt_file: "prompts/kansai-highlights.md"
+
+kansai_catch:
+  model: "openai/gpt-4o-mini"
+  temperature: 0.9        # キャッチーな表現のため高め
+  max_tokens: 100         # 1行20-40文字
+  prompt_file: "prompts/kansai-catch.md"

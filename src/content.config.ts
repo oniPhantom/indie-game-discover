@@ -14,6 +14,7 @@ const games = defineCollection({
     reviewPercentage: z.number(),
     headerImage: z.string(),
     generatedAt: z.string(),
+    kansaiCatch: z.string().optional(),
   }),
 });
 

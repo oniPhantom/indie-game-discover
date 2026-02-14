@@ -28,6 +28,7 @@ export interface ArticleData {
   reviewPercentage: number;
   englishReviews: EnglishReview[];
   kansaiHighlights: string;
+  kansaiCatch: string;
 }
 
 // ── プロジェクトルート ──────────────────────────
@@ -72,6 +73,7 @@ export function buildArticle(data: ArticleData): string {
     `reviewScore: "${escapeYaml(data.reviewScore)}"`,
     `reviewPercentage: ${data.reviewPercentage}`,
     `headerImage: "${data.headerImage}"`,
+    `kansaiCatch: "${escapeYaml(data.kansaiCatch)}"`,
     `generatedAt: "${new Date().toISOString()}"`,
     "---",
   ].join("\n");

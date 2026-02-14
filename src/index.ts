@@ -2,7 +2,7 @@
 
 import { fetchNewIndieGames, fetchPopularIndieGames, fetchGameDetails, fetchGameReviews } from "./steam.js";
 import { getPromptForTask } from "./prompt-loader.js";
-import { generateKansaiHighlights } from "./generator.js";
+import { generateKansaiHighlights, generateKansaiCatch } from "./generator.js";
 import {
   buildArticle,
   saveArticle,
@@ -85,7 +85,10 @@ async function main(): Promise<void> {
   );
 
   // 2. プロンプト読み込み
-  const highlightsPrompt = await getPromptForTask("kansai_highlights");
+  const [highlightsPrompt, catchPrompt] = await Promise.all([
+    getPromptForTask("kansai_highlights"),
+    getPromptForTask("kansai_catch"),
+  ]);
   console.log("[index] プロンプト読み込み完了");
 
   // 3. 新しいインディーゲーム一覧取得（Steam Store + SteamSpy をマージ）
@@ -184,19 +187,29 @@ async function main(): Promise<void> {
       );
       await sleep(API_DELAY);
 
-      // 5d. 英語レビューをEnglishReview型に変換
+      // 5d. 関西弁キャッチ生成
+      console.log("[index] 関西弁キャッチを生成中...");
+      const kansaiCatch = await generateKansaiCatch(
+        details,
+        catchPrompt.prompt,
+        catchPrompt.config,
+      );
+      await sleep(API_DELAY);
+
+      // 5e. 英語レビューをEnglishReview型に変換
       const englishReviews: EnglishReview[] = selectedReviews.map((r) => ({
         reviewText: r.reviewText,
         playtimeHours: r.playtimeHours,
         votedUp: r.votedUp,
       }));
 
-      // 5e. 記事を組み立て
+      // 5f. 記事を組み立て
       console.log("[index] 記事を組み立て中...");
       const articleData: ArticleData = {
         ...details,
         englishReviews,
         kansaiHighlights,
+        kansaiCatch,
       };
       const markdown = buildArticle(articleData);
 
