@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import GameLayout from '../../layouts/GameLayout.astro';
+import GameDetailHero from '../../components/GameDetailHero.astro';
 
 export async function getStaticPaths() {
   const games = await getCollection('games');
@@ -15,5 +16,15 @@ const { Content } = await render(game);
 ---
 
 <GameLayout title={game.data.title}>
-  <Content />
+  <GameDetailHero title={game.data.title} headerImage={game.data.headerImage} />
+  <div class="game-content">
+    <Content />
+  </div>
 </GameLayout>
+
+<style>
+  /* Markdown本文中の最初の画像を非表示（ヒーローで表示するため） */
+  .game-content :global(img:first-of-type) {
+    display: none;
+  }
+</style>
