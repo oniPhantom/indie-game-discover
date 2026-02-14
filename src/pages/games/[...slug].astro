@@ -2,24 +2,38 @@
 import { getCollection, render } from 'astro:content';
 import GameLayout from '../../layouts/GameLayout.astro';
 import GameDetailHero from '../../components/GameDetailHero.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import RelatedGames from '../../components/RelatedGames.astro';
 
 export async function getStaticPaths() {
   const games = await getCollection('games');
   return games.map((game) => ({
     params: { slug: game.id },
-    props: { game },
+    props: { game, allGames: games },
   }));
 }
 
-const { game } = Astro.props;
+const { game, allGames } = Astro.props;
 const { Content } = await render(game);
+
+// パンくずリスト用のitems
+const breadcrumbItems = [
+  { label: 'ホーム', href: '/' },
+  { label: game.data.title },
+];
 ---
 
 <GameLayout title={game.data.title}>
+  <Breadcrumb items={breadcrumbItems} />
   <GameDetailHero title={game.data.title} headerImage={game.data.headerImage} />
   <div class="game-content">
     <Content />
   </div>
+  <RelatedGames
+    currentSlug={game.id}
+    currentGenres={game.data.genres}
+    allGames={allGames}
+  />
 </GameLayout>
 
 <style>
