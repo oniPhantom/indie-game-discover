@@ -1,5 +1,7 @@
 # Indie Game Discover
 
+**https://indie-game-discover.pages.dev**
+
 AIが見つけたインディーゲームを関西弁レビューで紹介する自動生成サイト。
 
 ## 仕組み
