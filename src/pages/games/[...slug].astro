@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content';
 import GameLayout from '../../layouts/GameLayout.astro';
 import GameDetailHero from '../../components/GameDetailHero.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
+import PriceComparison from '../../components/PriceComparison.astro';
 import ShareButtons from '../../components/ShareButtons.astro';
 import RelatedGames from '../../components/RelatedGames.astro';
 
@@ -61,6 +62,7 @@ const structuredData = {
   <div class="game-content">
     <Content />
   </div>
+  <PriceComparison appId={game.data.appId} title={game.data.title} price={game.data.price} />
   <ShareButtons title={game.data.title} url={currentUrl} />
   <RelatedGames
     currentSlug={game.id}

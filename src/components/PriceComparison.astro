@@ -1,0 +1,221 @@
+---
+interface Props {
+  appId: number;
+  title: string;
+  price: string;
+}
+
+const { appId, title, price } = Astro.props;
+
+// 価格比較・履歴サイトURL
+const itadUrl = `https://isthereanydeal.com/steam/app/${appId}/`;
+const steamdbUrl = `https://steamdb.info/app/${appId}/`;
+const steamStoreUrl = `https://store.steampowered.com/app/${appId}/`;
+---
+
+<section class="price-comparison">
+  <h2 class="section-title">価格をチェック</h2>
+
+  <div class="current-price">
+    <span class="label">現在のSteam価格</span>
+    <span class="price-value">{price}</span>
+  </div>
+
+  <div class="price-links">
+    <a href={itadUrl} target="_blank" rel="noopener noreferrer" class="price-link itad">
+      <div class="link-icon">💰</div>
+      <div class="link-content">
+        <div class="link-label">価格比較</div>
+        <div class="link-description">最安値をチェック</div>
+      </div>
+    </a>
+
+    <a href={steamdbUrl} target="_blank" rel="noopener noreferrer" class="price-link steamdb">
+      <div class="link-icon">📊</div>
+      <div class="link-content">
+        <div class="link-label">価格履歴</div>
+        <div class="link-description">過去の値下げを確認</div>
+      </div>
+    </a>
+
+    <a href={steamStoreUrl} target="_blank" rel="noopener noreferrer" class="price-link steam">
+      <div class="link-icon">🎮</div>
+      <div class="link-content">
+        <div class="link-label">Steamストア</div>
+        <div class="link-description">今すぐ購入</div>
+      </div>
+    </a>
+  </div>
+
+  <p class="hint">💡 セール時に買うとお得やで！定期的にチェックしてみてな</p>
+</section>
+
+<style>
+  .price-comparison {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: var(--space-8);
+    margin: var(--space-8) 0;
+    box-shadow: var(--shadow-md);
+  }
+
+  .section-title {
+    font-size: var(--font-2xl);
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: var(--space-6);
+    border-bottom: 2px solid var(--border);
+    padding-bottom: var(--space-4);
+  }
+
+  .current-price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-4) var(--space-6);
+    background: rgba(124, 58, 237, 0.1);
+    border-radius: 8px;
+    margin-bottom: var(--space-6);
+  }
+
+  .current-price .label {
+    font-size: var(--font-base);
+    color: var(--text-muted);
+  }
+
+  .current-price .price-value {
+    font-size: var(--font-xl);
+    font-weight: 700;
+    color: var(--accent-green);
+  }
+
+  .price-links {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+  }
+
+  .price-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-5);
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+  }
+
+  .price-link.itad {
+    background: rgba(16, 185, 129, 0.1);
+    border-color: var(--accent-green);
+  }
+
+  .price-link.itad:hover {
+    background: rgba(16, 185, 129, 0.2);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .price-link.steamdb {
+    background: rgba(124, 58, 237, 0.1);
+    border-color: var(--accent);
+  }
+
+  .price-link.steamdb:hover {
+    background: rgba(124, 58, 237, 0.2);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .price-link.steam {
+    background: rgba(27, 40, 56, 0.5);
+    border-color: #66c0f4;
+  }
+
+  .price-link.steam:hover {
+    background: rgba(27, 40, 56, 0.8);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .link-icon {
+    font-size: var(--font-3xl);
+  }
+
+  .link-content {
+    text-align: center;
+  }
+
+  .link-label {
+    font-size: var(--font-base);
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: var(--space-1);
+  }
+
+  .link-description {
+    font-size: var(--font-sm);
+    color: var(--text-muted);
+  }
+
+  .hint {
+    font-size: var(--font-sm);
+    color: var(--text-muted);
+    text-align: center;
+    padding: var(--space-3);
+    background: rgba(124, 58, 237, 0.05);
+    border-radius: 6px;
+    margin: 0;
+  }
+
+  /* モバイル対応：縦積み */
+  @media (max-width: 768px) {
+    .price-comparison {
+      padding: var(--space-6);
+    }
+
+    .price-links {
+      grid-template-columns: 1fr;
+      gap: var(--space-3);
+    }
+
+    .price-link {
+      flex-direction: row;
+      justify-content: flex-start;
+      padding: var(--space-4);
+    }
+
+    .link-icon {
+      font-size: var(--font-2xl);
+      flex-shrink: 0;
+    }
+
+    .link-content {
+      text-align: left;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .price-comparison {
+      padding: var(--space-5);
+    }
+
+    .section-title {
+      font-size: var(--font-xl);
+    }
+
+    .current-price {
+      flex-direction: column;
+      gap: var(--space-2);
+      align-items: flex-start;
+    }
+
+    .hint {
+      font-size: var(--font-xs);
+    }
+  }
+</style>
