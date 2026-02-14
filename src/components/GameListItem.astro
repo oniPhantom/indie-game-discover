@@ -1,0 +1,221 @@
+---
+interface Props {
+  slug: string;
+  title: string;
+  headerImage: string;
+  genres: string[];
+  price: string;
+  developer: string;
+  reviewScore: string;
+  reviewPercentage?: number;
+  kansaiCatch?: string;
+}
+
+const { slug, title, headerImage, genres, price, developer, reviewScore, reviewPercentage, kansaiCatch } = Astro.props;
+
+// レビュースコア色分けロジック
+const getScoreBadge = (percentage: number) => {
+  if (percentage >= 90) return { color: '#22c55e', label: '最高評価' };
+  if (percentage >= 75) return { color: '#84cc16', label: '好評' };
+  if (percentage >= 60) return { color: '#eab308', label: '賛否両論' };
+  return { color: '#ef4444', label: '不評' };
+};
+
+const scoreBadge = reviewPercentage !== undefined ? getScoreBadge(reviewPercentage) : null;
+const isFree = price.toLowerCase().includes('無料') || price.toLowerCase().includes('free');
+
+// kansaiCatchのフォールバック
+const catchPhrase = kansaiCatch ?? title;
+---
+
+<a href={`/games/${slug}/`} class="list-item">
+  <div class="thumbnail">
+    <img src={headerImage} alt={title} loading="lazy" />
+  </div>
+
+  <div class="content">
+    <div class="text-section">
+      <h2 class="catch">{catchPhrase}</h2>
+      <p class="title">{title}</p>
+    </div>
+
+    <div class="meta-section">
+      <!-- ジャンルタグ（最大3つ） -->
+      <div class="genres">
+        {genres.slice(0, 3).map(genre => (
+          <span class="genre-pill">{genre}</span>
+        ))}
+      </div>
+
+      <!-- スコアと価格 -->
+      <div class="footer">
+        {scoreBadge && (
+          <div class="score-badge" style={`background-color: ${scoreBadge.color};`}>
+            <span class="score-label">{scoreBadge.label}</span>
+            <span class="score-value">{reviewScore}</span>
+          </div>
+        )}
+
+        {isFree ? (
+          <span class="price-badge free">無料</span>
+        ) : (
+          <span class="price-badge">{price}</span>
+        )}
+      </div>
+    </div>
+  </div>
+</a>
+
+<style>
+  .list-item {
+    display: flex;
+    gap: 1.5rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 1rem;
+  }
+
+  /* ホバーアニメーション */
+  .list-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(124, 58, 237, 0.4),
+                0 0 20px rgba(124, 58, 237, 0.3);
+  }
+
+  /* サムネイル（左） */
+  .thumbnail {
+    flex-shrink: 0;
+    width: 220px;
+  }
+
+  .thumbnail img {
+    width: 100%;
+    aspect-ratio: 460 / 215;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  /* コンテンツ（右） */
+  .content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 0; /* flexboxでのtext-overflow対策 */
+  }
+
+  /* テキストセクション */
+  .text-section {
+    margin-bottom: 0.75rem;
+  }
+
+  /* 関西弁キャッチ（大きく目立つ） */
+  .catch {
+    font-size: 1.4rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin: 0 0 0.5rem 0;
+    color: var(--text);
+  }
+
+  /* ゲームタイトル（小さめサブタイトル） */
+  .title {
+    font-size: 0.9rem;
+    margin: 0;
+    opacity: 0.7;
+    font-weight: 500;
+  }
+
+  /* メタセクション */
+  .meta-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  /* ジャンルタグ（pill形式） */
+  .genres {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .genre-pill {
+    display: inline-block;
+    padding: 0.25rem 0.6rem;
+    font-size: 0.75rem;
+    background: rgba(124, 58, 237, 0.2);
+    color: var(--text);
+    border: 1px solid rgba(124, 58, 237, 0.4);
+    border-radius: 12px;
+    font-weight: 500;
+  }
+
+  /* フッター（スコア + 価格） */
+  .footer {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+  }
+
+  /* スコアバッジ */
+  .score-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.4rem 0.7rem;
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+    gap: 0.1rem;
+  }
+
+  .score-label {
+    font-size: 0.65rem;
+    opacity: 0.9;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .score-value {
+    font-size: 0.9rem;
+  }
+
+  /* 価格バッジ */
+  .price-badge {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text);
+    padding: 0.4rem 0.7rem;
+    border-radius: 8px;
+    background: rgba(124, 58, 237, 0.15);
+    border: 1px solid rgba(124, 58, 237, 0.3);
+  }
+
+  .price-badge.free {
+    background: #22c55e;
+    color: white;
+    border: none;
+  }
+
+  /* レスポンシブ: モバイルは縦積み */
+  @media (max-width: 768px) {
+    .list-item {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .thumbnail {
+      width: 100%;
+    }
+
+    .catch {
+      font-size: 1.2rem;
+    }
+  }
+</style>

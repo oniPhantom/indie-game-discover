@@ -1,50 +1,35 @@
 ---
 import { getCollection } from 'astro:content';
 import GameLayout from '../layouts/GameLayout.astro';
-import GameCard from '../components/GameCard.astro';
-import HeroSection from '../components/HeroSection.astro';
+import GameListItem from '../components/GameListItem.astro';
 
 const games = (await getCollection('games')).sort(
   (a, b) => new Date(b.data.generatedAt).getTime() - new Date(a.data.generatedAt).getTime()
 );
-
-// フィーチャードゲーム選定（最初の1件）
-const [featured, ...otherGames] = games;
 ---
 
 <GameLayout title="ホーム">
   {games.length === 0 ? (
-    <p class="empty">まだ記事がないで。`npm run generate` で生成してな！</p>
+    <p class="empty">まだ記事がありません。`npm run generate` で生成してください。</p>
   ) : (
-    <>
-      {/* ヒーローセクション（フィーチャードゲーム） */}
-      <HeroSection
-        title={featured.data.title}
-        headerImage={featured.data.headerImage}
-        slug={featured.id}
-        genres={featured.data.genres}
-        reviewPercentage={featured.data.reviewPercentage}
-      />
-
-      {/* ゲーム一覧セクション */}
-      <section class="games-section">
-        <h2>🎮 ゲーム一覧</h2>
-        <div class="grid">
-          {otherGames.map((game) => (
-            <GameCard
-              slug={game.id}
-              title={game.data.title}
-              headerImage={game.data.headerImage}
-              genres={game.data.genres}
-              price={game.data.price}
-              developer={game.data.developer}
-              reviewScore={game.data.reviewScore}
-              reviewPercentage={game.data.reviewPercentage}
-            />
-          ))}
-        </div>
-      </section>
-    </>
+    <section class="games-section">
+      <h2>🎮 ゲーム一覧</h2>
+      <div class="game-list">
+        {games.map((game) => (
+          <GameListItem
+            slug={game.id}
+            title={game.data.title}
+            headerImage={game.data.headerImage}
+            genres={game.data.genres}
+            price={game.data.price}
+            developer={game.data.developer}
+            reviewScore={game.data.reviewScore}
+            reviewPercentage={game.data.reviewPercentage}
+            kansaiCatch={game.data.kansaiCatch}
+          />
+        ))}
+      </div>
+    </section>
   )}
 </GameLayout>
 
@@ -63,11 +48,11 @@ const [featured, ...otherGames] = games;
     border-bottom: 3px solid var(--accent);
   }
 
-  /* グリッド */
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 1.5rem;
+  /* リスト（縦並び） */
+  .game-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
     margin-top: 2rem;
   }
 
@@ -80,10 +65,6 @@ const [featured, ...otherGames] = games;
 
   /* レスポンシブ調整 */
   @media (max-width: 768px) {
-    .grid {
-      grid-template-columns: 1fr;
-    }
-
     .games-section h2 {
       font-size: 1.5rem;
     }
