@@ -32,13 +32,21 @@ function getToken(): string {
 
 function formatGameDetails(game: GameDetails): string {
   const lines = [
-    `ゲーム名: ${game.name}`,
-    `ジャンル: ${game.genres.join(", ")}`,
-    `価格: ${game.price}`,
-    `開発者: ${game.developer}`,
-    `Steam評価: ${game.reviewScore} (${game.reviewPercentage}%)`,
-    `説明: ${game.description}`,
+    `## ゲーム情報`,
+    `- タイトル: ${game.name}`,
+    `- ジャンル: ${game.genres.join(", ")}`,
+    `- 価格: ${game.price}`,
+    `- 開発元: ${game.developer}`,
+    `- リリース日: ${game.releaseDate}`,
+    `- Steamユーザー評価: ${game.reviewScore} (好評率${game.reviewPercentage}%)`,
+    ``,
+    `## ストア説明文`,
+    game.description,
   ];
+  // tagsがあれば追加
+  if (game.tags && game.tags.length > 0) {
+    lines.push(``, `## タグ`, game.tags.join(", "));
+  }
   return lines.join("\n");
 }
 

@@ -76,6 +76,10 @@ export function buildArticle(data: ArticleData): string {
     "---",
   ].join("\n");
 
+  const reviewDisplay = data.reviewScore
+    ? `${data.reviewScore} (${data.reviewPercentage}%)`
+    : `好評率 ${data.reviewPercentage}%`;
+
   const infoTable = [
     "| 項目 | 詳細 |",
     "|------|------|",
@@ -83,11 +87,11 @@ export function buildArticle(data: ArticleData): string {
     `| 価格 | ${data.price} |`,
     `| リリース日 | ${data.releaseDate} |`,
     `| 開発者 | ${data.developer} |`,
-    `| Steam評価 | ${data.reviewScore} (${data.reviewPercentage}%) |`,
+    `| Steam評価 | ${reviewDisplay} |`,
   ].join("\n");
 
   const reviews = data.kansaiReviews
-    .map((r) => formatReview(r))
+    .map((r, i) => formatReview(r, i))
     .join("\n\n");
 
   return `${frontmatter}
@@ -129,13 +133,25 @@ export async function saveArticle(
 
 // ── ヘルパー ───────────────────────────────────
 
-function formatReview(review: KansaiReview): string {
-  const emoji = review.votedUp ? "⭐" : "👎";
+function formatReview(review: KansaiReview, index: number): string {
+  const emoji = review.votedUp ? "👍" : "👎";
+  const sentiment = review.votedUp ? "おすすめ" : "おすすめせえへん";
+  const playtimeLabel = getPlaytimeLabel(review.playtimeHours);
   return [
-    `> ${emoji} "${review.translated}"`,
-    ">",
-    `> — プレイ時間: ${review.playtimeHours}時間`,
+    `### ${emoji} レビュー${index + 1}（${sentiment}）`,
+    ``,
+    `> ${review.translated}`,
+    ``,
+    `🕐 ${review.playtimeHours}時間プレイ ${playtimeLabel}`,
   ].join("\n");
+}
+
+function getPlaytimeLabel(hours: number): string {
+  if (hours >= 500) return "（廃人級）";
+  if (hours >= 100) return "（ベテラン）";
+  if (hours >= 30) return "（じっくり派）";
+  if (hours >= 10) return "（そこそこ）";
+  return "";
 }
 
 function escapeYaml(value: string): string {

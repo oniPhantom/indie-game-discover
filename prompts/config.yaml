@@ -1,11 +1,11 @@
 game_intro:
   model: "openai/gpt-4o-mini"
-  temperature: 0.7
+  temperature: 0.8        # より自然な文体のため
   max_tokens: 1000
   prompt_file: "prompts/game-intro.md"
 
 review_translation:
   model: "openai/gpt-4o-mini"
-  temperature: 0.9
-  max_tokens: 500
+  temperature: 0.85       # 暴走を少し抑制
+  max_tokens: 300          # 3〜5文なら300で十分
   prompt_file: "prompts/review-kansai.md"

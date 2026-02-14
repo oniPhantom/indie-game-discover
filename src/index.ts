@@ -32,6 +32,47 @@ function sleep(ms: number): Promise<void> {
   return new Promise((r) => setTimeout(r, ms));
 }
 
+/**
+ * レビューパーセンテージから日本語のレビューラベルを生成する
+ */
+function getJapaneseReviewLabel(percentage: number): string {
+  if (percentage >= 95) return "圧倒的に好評";
+  if (percentage >= 80) return "非常に好評";
+  if (percentage >= 70) return "ほぼ好評";
+  if (percentage >= 40) return "賛否両論";
+  return "不評";
+}
+
+/**
+ * レビューの品質をスコアリングする（適度な長さを優先）
+ */
+function scoreReview(review: { reviewText: string; playtimeHours: number; votedUp: boolean }): number {
+  const length = review.reviewText.length;
+  let score = 0;
+
+  // 長さスコア（150-500文字が最適）
+  if (length >= 150 && length <= 500) {
+    score += 10;
+  } else if (length >= 100 && length < 150) {
+    score += 7;
+  } else if (length > 500 && length <= 800) {
+    score += 5;
+  } else {
+    score += 2;
+  }
+
+  // プレイ時間スコア（5時間以上を優先）
+  if (review.playtimeHours >= 50) {
+    score += 5;
+  } else if (review.playtimeHours >= 10) {
+    score += 3;
+  } else if (review.playtimeHours >= 5) {
+    score += 2;
+  }
+
+  return score;
+}
+
 // ---------- メイン ----------
 
 async function main(): Promise<void> {
@@ -105,13 +146,31 @@ async function main(): Promise<void> {
 
       // 5b. レビュー取得
       console.log("[index] レビューを取得中...");
-      const reviews = await fetchGameReviews(game.appId, REVIEWS_PER_GAME * 2);
+      const { reviews: rawReviews, reviewSummary } = await fetchGameReviews(game.appId, REVIEWS_PER_GAME * 3);
       await sleep(API_DELAY);
 
-      // 面白いレビューを選別（ある程度のプレイ時間＋長さのあるレビュー）
-      const selectedReviews = reviews
-        .filter((r) => r.reviewText.length > 30 && r.playtimeHours >= 1)
-        .slice(0, REVIEWS_PER_GAME);
+      // reviewPercentage と reviewScore を上書き
+      if (reviewSummary.percentage > 0) {
+        details.reviewPercentage = reviewSummary.percentage;
+      }
+      if (!details.reviewScore && reviewSummary.percentage > 0) {
+        details.reviewScore = getJapaneseReviewLabel(reviewSummary.percentage);
+      }
+
+      // 面白いレビューを選別（適度な長さ＋品質スコアリング）
+      const validReviews = rawReviews
+        .filter((r) => r.reviewText.length >= 50 && r.reviewText.length <= 800 && r.playtimeHours >= 1)
+        .map((r) => ({ ...r, score: scoreReview(r) }))
+        .sort((a, b) => b.score - a.score);
+
+      // 肯定・否定のバランスを取る
+      const positiveReviews = validReviews.filter((r) => r.votedUp);
+      const negativeReviews = validReviews.filter((r) => !r.votedUp);
+
+      const selectedReviews = [
+        ...positiveReviews.slice(0, REVIEWS_PER_GAME - 1),
+        ...(negativeReviews.length > 0 ? negativeReviews.slice(0, 1) : positiveReviews.slice(REVIEWS_PER_GAME - 1, REVIEWS_PER_GAME)),
+      ].slice(0, REVIEWS_PER_GAME);
 
       if (selectedReviews.length === 0) {
         console.log("[index] 良質なレビューが見つからず、スキップ");

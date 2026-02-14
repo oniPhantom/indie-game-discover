@@ -32,7 +32,25 @@ export interface SteamReview {
   authorSteamId: string;
 }
 
+export interface ReviewSummary {
+  totalPositive: number;
+  totalNegative: number;
+  totalReviews: number;
+  percentage: number;
+}
+
 // ---------- ヘルパー ----------
+
+/**
+ * レビューテキストからBBCode/HTMLタグを除去して正規化する
+ */
+function sanitizeReviewText(text: string): string {
+  return text
+    .replace(/\[\/?\w+(?:=[^\]]+)?\]/g, '')  // BBCode除去
+    .replace(/<[^>]+>/g, '')                   // HTMLタグ除去
+    .replace(/\n{3,}/g, '\n\n')               // 連続改行正規化
+    .trim();
+}
 
 class SteamApiError extends Error {
   constructor(
@@ -246,7 +264,6 @@ export async function fetchGameDetails(
   const reviewDesc = typeof d.review_score_desc === "string"
     ? d.review_score_desc
     : "";
-  const metacritic = d.metacritic as { score?: number } | undefined;
 
   return {
     appId,
@@ -262,17 +279,18 @@ export async function fetchGameDetails(
     developer: developers?.[0] ?? "",
     headerImage: typeof d.header_image === "string" ? d.header_image : "",
     reviewScore: reviewDesc,
-    reviewPercentage: metacritic?.score ?? 0,
+    reviewPercentage: 0,
   };
 }
 
 /**
  * 指定したappIdの英語レビュー（高評価順）を取得する。
+ * レビュー一覧とレビューサマリーを返す。
  */
 export async function fetchGameReviews(
   appId: number,
   count: number = 10,
-): Promise<SteamReview[]> {
+): Promise<{ reviews: SteamReview[]; reviewSummary: ReviewSummary }> {
   const url = new URL(`${STORE_API_BASE}/appreviews/${appId}`);
   url.searchParams.set("json", "1");
   url.searchParams.set("language", "english");
@@ -298,13 +316,39 @@ export async function fetchGameReviews(
   };
 
   if (data.success !== 1 || !data.reviews) {
-    return [];
+    return {
+      reviews: [],
+      reviewSummary: {
+        totalPositive: 0,
+        totalNegative: 0,
+        totalReviews: 0,
+        percentage: 0,
+      },
+    };
   }
 
-  return data.reviews.map((r) => ({
-    reviewText: r.review,
+  // query_summaryからレビューサマリーを計算
+  const querySummary = data.query_summary;
+  const totalPositive = querySummary?.total_positive ?? 0;
+  const totalNegative = querySummary?.total_negative ?? 0;
+  const totalReviews = querySummary?.total_reviews ?? 0;
+  const percentage = totalPositive + totalNegative > 0
+    ? Math.round((totalPositive / (totalPositive + totalNegative)) * 100)
+    : 0;
+
+  const reviewSummary: ReviewSummary = {
+    totalPositive,
+    totalNegative,
+    totalReviews,
+    percentage,
+  };
+
+  const reviews = data.reviews.map((r) => ({
+    reviewText: sanitizeReviewText(r.review),
     votedUp: r.voted_up,
     playtimeHours: Math.round(r.author.playtime_forever / 60),
     authorSteamId: r.author.steamid,
   }));
+
+  return { reviews, reviewSummary };
 }
