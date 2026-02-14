@@ -45,6 +45,11 @@ const {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" onload="this.rel='stylesheet'" />
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" /></noscript>
+
+    <!-- Google AdSense -->
+    <!-- パブリッシャーIDはAdSense審査通過後に設定 -->
+    <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
+    <!-- End Google AdSense -->
     <style>
       :root {
         /* 既存のCSS変数（維持） */
@@ -457,6 +462,25 @@ const {
           font-size: var(--font-sm);
         }
       }
+
+      /* 広告コンテナ */
+      .ad-container {
+        max-width: 1200px;
+        margin: var(--space-8) auto;
+        padding: 0 var(--space-8);
+      }
+
+      .ad-placeholder {
+        background: rgba(42, 42, 74, 0.3);
+        border: 1px dashed var(--border);
+        border-radius: 8px;
+        padding: var(--space-8) var(--space-4);
+        text-align: center;
+        color: var(--text-muted);
+        font-size: var(--font-sm);
+        /* 本番環境では display: none にする（またはプレースホルダーごと削除） */
+        display: none;
+      }
     </style>
   </head>
   <body>
@@ -472,6 +496,19 @@ const {
     <main id="main">
       <slot />
     </main>
+    <!-- 広告エリア（AdSense審査通過後に有効化） -->
+    <aside class="ad-container" aria-label="広告">
+      <!-- <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+           data-ad-slot="XXXXXXXXXX"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script> -->
+      <div class="ad-placeholder">
+        <p>Ad Space</p>
+      </div>
+    </aside>
     <footer>
       <div class="footer-content">
         <div class="footer-links">
