@@ -15,6 +15,8 @@ const games = defineCollection({
     headerImage: z.string(),
     generatedAt: z.string(),
     kansaiCatch: z.string().optional(),
+    qualityScore: z.number().min(0).max(100).optional(),
+    qualityGrade: z.enum(['S', 'A', 'B', 'C', 'D']).optional(),
   }),
 });
 

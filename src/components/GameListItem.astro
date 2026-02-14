@@ -1,6 +1,7 @@
 ---
 import GenrePill from './GenrePill.astro';
 import PriceBadge from './PriceBadge.astro';
+import QualityBadge from './QualityBadge.astro';
 import ScoreBadge from './ScoreBadge.astro';
 
 interface Props {
@@ -13,9 +14,11 @@ interface Props {
   reviewScore: string;
   reviewPercentage?: number;
   kansaiCatch?: string;
+  qualityScore?: number;
+  qualityGrade?: string;
 }
 
-const { slug, title, headerImage, genres, price, developer, reviewScore, reviewPercentage, kansaiCatch } = Astro.props;
+const { slug, title, headerImage, genres, price, developer, reviewScore, reviewPercentage, kansaiCatch, qualityScore, qualityGrade } = Astro.props;
 
 // kansaiCatchのフォールバック
 const catchPhrase = kansaiCatch ?? title;
@@ -47,6 +50,8 @@ const catchPhrase = kansaiCatch ?? title;
         )}
 
         <PriceBadge price={price} />
+
+        <QualityBadge score={qualityScore} grade={qualityGrade} />
       </div>
     </div>
   </div>

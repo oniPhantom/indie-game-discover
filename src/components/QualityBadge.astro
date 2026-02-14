@@ -1,0 +1,57 @@
+---
+interface Props {
+  score?: number;
+  grade?: string;
+}
+
+const { score, grade } = Astro.props;
+
+// グレードがない場合は非表示
+if (!grade) {
+  return null;
+}
+
+// グレードごとの色と説明
+const gradeConfig: Record<string, { color: string; label: string }> = {
+  S: { color: '#FFD700', label: '最高品質' },
+  A: { color: '#22c55e', label: '高品質' },
+  B: { color: '#3b82f6', label: '標準' },
+  C: { color: '#eab308', label: '改善余地あり' },
+  D: { color: '#ef4444', label: '要改善' },
+};
+
+const config = gradeConfig[grade] || { color: '#6b7280', label: '未評価' };
+const tooltipText = score !== undefined
+  ? `記事品質スコア: ${score}/100（${config.label}）`
+  : `記事品質グレード: ${config.label}`;
+---
+
+<span
+  class="quality-badge"
+  style={`--badge-color: ${config.color};`}
+  title={tooltipText}
+  aria-label={tooltipText}
+>
+  {grade}{score !== undefined && ` ${score}`}
+</span>
+
+<style>
+  .quality-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.625rem;
+    border-radius: 12px;
+    font-size: var(--font-xs);
+    font-weight: 600;
+    color: white;
+    background-color: var(--badge-color);
+    white-space: nowrap;
+    cursor: help;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .quality-badge:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+</style>
