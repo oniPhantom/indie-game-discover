@@ -1,0 +1,48 @@
+---
+interface Props {
+  percentage: number;
+  score?: string;
+}
+
+const { percentage, score } = Astro.props;
+
+// レビュースコア色分けロジック
+const getScoreBadge = (pct: number) => {
+  if (pct >= 90) return { color: '#22c55e', label: '最高評価' };
+  if (pct >= 75) return { color: '#84cc16', label: '好評' };
+  if (pct >= 60) return { color: '#eab308', label: '賛否両論' };
+  return { color: '#ef4444', label: '不評' };
+};
+
+const scoreBadge = getScoreBadge(percentage);
+---
+
+<div class="score-badge" style={`background-color: ${scoreBadge.color};`}>
+  <span class="score-label">{scoreBadge.label}</span>
+  <span class="score-value">{score ?? `${percentage}%`}</span>
+</div>
+
+<style>
+  .score-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.4rem 0.7rem;
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+    gap: 0.1rem;
+    min-height: 36px;
+  }
+
+  .score-label {
+    font-size: 0.65rem;
+    opacity: 0.9;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .score-value {
+    font-size: 0.9rem;
+  }
+</style>

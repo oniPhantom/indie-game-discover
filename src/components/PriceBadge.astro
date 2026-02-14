@@ -1,0 +1,33 @@
+---
+interface Props {
+  price: string;
+}
+
+const { price } = Astro.props;
+const isFree = price.toLowerCase().includes('無料') || price.toLowerCase().includes('free');
+---
+
+{isFree ? (
+  <span class="price-badge free">無料</span>
+) : (
+  <span class="price-badge">{price}</span>
+)}
+
+<style>
+  .price-badge {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text);
+    padding: 0.4rem 0.7rem;
+    border-radius: 8px;
+    background: rgba(124, 58, 237, 0.15);
+    border: 1px solid rgba(124, 58, 237, 0.3);
+    min-height: 36px;
+  }
+
+  .price-badge.free {
+    background: #22c55e;
+    color: white;
+    border: none;
+  }
+</style>

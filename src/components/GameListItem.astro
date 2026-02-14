@@ -1,4 +1,8 @@
 ---
+import GenrePill from './GenrePill.astro';
+import PriceBadge from './PriceBadge.astro';
+import ScoreBadge from './ScoreBadge.astro';
+
 interface Props {
   slug: string;
   title: string;
@@ -12,17 +16,6 @@ interface Props {
 }
 
 const { slug, title, headerImage, genres, price, developer, reviewScore, reviewPercentage, kansaiCatch } = Astro.props;
-
-// レビュースコア色分けロジック
-const getScoreBadge = (percentage: number) => {
-  if (percentage >= 90) return { color: '#22c55e', label: '最高評価' };
-  if (percentage >= 75) return { color: '#84cc16', label: '好評' };
-  if (percentage >= 60) return { color: '#eab308', label: '賛否両論' };
-  return { color: '#ef4444', label: '不評' };
-};
-
-const scoreBadge = reviewPercentage !== undefined ? getScoreBadge(reviewPercentage) : null;
-const isFree = price.toLowerCase().includes('無料') || price.toLowerCase().includes('free');
 
 // kansaiCatchのフォールバック
 const catchPhrase = kansaiCatch ?? title;
@@ -43,24 +36,17 @@ const catchPhrase = kansaiCatch ?? title;
       <!-- ジャンルタグ（最大3つ） -->
       <div class="genres">
         {genres.slice(0, 3).map(genre => (
-          <span class="genre-pill">{genre}</span>
+          <GenrePill label={genre} />
         ))}
       </div>
 
       <!-- スコアと価格 -->
       <div class="footer">
-        {scoreBadge && (
-          <div class="score-badge" style={`background-color: ${scoreBadge.color};`}>
-            <span class="score-label">{scoreBadge.label}</span>
-            <span class="score-value">{reviewScore}</span>
-          </div>
+        {reviewPercentage !== undefined && (
+          <ScoreBadge percentage={reviewPercentage} score={reviewScore} />
         )}
 
-        {isFree ? (
-          <span class="price-badge free">無料</span>
-        ) : (
-          <span class="price-badge">{price}</span>
-        )}
+        <PriceBadge price={price} />
       </div>
     </div>
   </div>
@@ -145,62 +131,11 @@ const catchPhrase = kansaiCatch ?? title;
     gap: 0.4rem;
   }
 
-  .genre-pill {
-    display: inline-block;
-    padding: 0.25rem 0.6rem;
-    font-size: 0.75rem;
-    background: rgba(124, 58, 237, 0.2);
-    color: var(--text);
-    border: 1px solid rgba(124, 58, 237, 0.4);
-    border-radius: 12px;
-    font-weight: 500;
-  }
-
   /* フッター（スコア + 価格） */
   .footer {
     display: flex;
     gap: 0.75rem;
     align-items: center;
-  }
-
-  /* スコアバッジ */
-  .score-badge {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 0.4rem 0.7rem;
-    border-radius: 8px;
-    color: white;
-    font-weight: 600;
-    gap: 0.1rem;
-  }
-
-  .score-label {
-    font-size: 0.65rem;
-    opacity: 0.9;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-
-  .score-value {
-    font-size: 0.9rem;
-  }
-
-  /* 価格バッジ */
-  .price-badge {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--text);
-    padding: 0.4rem 0.7rem;
-    border-radius: 8px;
-    background: rgba(124, 58, 237, 0.15);
-    border: 1px solid rgba(124, 58, 237, 0.3);
-  }
-
-  .price-badge.free {
-    background: #22c55e;
-    color: white;
-    border: none;
   }
 
   /* レスポンシブ: モバイルは縦積み */
