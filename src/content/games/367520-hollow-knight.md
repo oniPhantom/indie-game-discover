@@ -9,6 +9,7 @@ reviewScore: ""
 reviewPercentage: 87
 headerImage: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/367520/3c3489495136b26b34f8a9543c7f5645b99d388c/header.jpg?t=1770338567"
 generatedAt: "2026-02-11T16:46:15.628Z"
+kansaiCatch: "地下王国ホロウネスト、美しくて残酷な冒険が待っとるで"
 ---
 
 # Hollow Knight

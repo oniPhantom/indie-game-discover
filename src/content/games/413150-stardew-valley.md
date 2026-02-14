@@ -9,6 +9,7 @@ reviewScore: ""
 reviewPercentage: 89
 headerImage: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/413150/header.jpg?t=1754692865"
 generatedAt: "2026-02-11T16:47:10.692Z"
+kansaiCatch: "畑耕して、釣りして、恋して。田舎暮らしが最高すぎるねん"
 ---
 
 # Stardew Valley
