@@ -1,0 +1,24 @@
+---
+interface Props {
+  label: string;
+}
+
+const { label } = Astro.props;
+---
+
+<span class="genre-pill">{label}</span>
+
+<style>
+  .genre-pill {
+    display: inline-block;
+    padding: 0.25rem 0.6rem;
+    font-size: 0.75rem;
+    background: rgba(124, 58, 237, 0.2);
+    color: var(--text);
+    border: 1px solid rgba(124, 58, 237, 0.4);
+    border-radius: 12px;
+    font-weight: 500;
+    min-height: 28px;
+    min-width: 28px;
+  }
+</style>
