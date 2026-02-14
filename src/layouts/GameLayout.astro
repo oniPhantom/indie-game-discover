@@ -167,13 +167,113 @@ const { title } = Astro.props;
 
       /* 共通スタイル */
       img { max-width: 100%; border-radius: 8px; }
-      table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
-      th, td {
-        padding: 0.5rem 1rem;
-        border: 1px solid var(--border);
-        text-align: left;
+
+      /* テーブルスタイル（リッチデザイン） */
+      table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        margin: 1.5rem 0;
+        background: var(--card-bg);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3), 0 0 20px rgba(124, 58, 237, 0.1);
+        backdrop-filter: blur(10px);
       }
-      th { background: var(--card-bg); }
+
+      th, td {
+        padding: 1rem 1.25rem;
+        text-align: left;
+        border-bottom: 1px solid var(--border);
+        transition: all 0.3s ease;
+      }
+
+      /* ヘッダー行 */
+      th {
+        background: linear-gradient(135deg, var(--card-bg) 0%, rgba(124, 58, 237, 0.1) 100%);
+        font-weight: 600;
+        color: var(--accent);
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        letter-spacing: 0.05em;
+        border-left: 3px solid var(--accent);
+      }
+
+      th:first-child {
+        border-left: none;
+        padding-left: 1.5rem;
+        border-left: 4px solid var(--accent);
+      }
+
+      /* データ行 */
+      tbody tr {
+        transition: all 0.3s ease;
+      }
+
+      tbody tr:nth-child(even) {
+        background: rgba(255, 255, 255, 0.02);
+      }
+
+      tbody tr:nth-child(odd) {
+        background: rgba(0, 0, 0, 0.1);
+      }
+
+      /* ホバーエフェクト */
+      tbody tr:hover {
+        background: rgba(124, 58, 237, 0.15);
+        transform: translateX(4px);
+      }
+
+      tbody tr:hover td {
+        color: #fff;
+      }
+
+      /* 項目セル（最初の列）にアクセントボーダー */
+      td:first-child {
+        font-weight: 600;
+        color: var(--accent-green);
+        border-left: 4px solid var(--accent);
+        padding-left: 1.5rem;
+        background: rgba(124, 58, 237, 0.05);
+      }
+
+      /* 最終行のボーダー削除 */
+      tbody tr:last-child td {
+        border-bottom: none;
+      }
+
+      /* レスポンシブ対応（モバイル） */
+      @media (max-width: 768px) {
+        table {
+          border-radius: 8px;
+          font-size: 0.9rem;
+        }
+
+        th, td {
+          padding: 0.75rem 1rem;
+        }
+
+        th:first-child,
+        td:first-child {
+          padding-left: 1rem;
+        }
+
+        /* モバイルでは横スクロール可能に */
+        main {
+          overflow-x: auto;
+        }
+      }
+
+      @media (max-width: 480px) {
+        table {
+          font-size: 0.85rem;
+        }
+
+        th, td {
+          padding: 0.6rem 0.8rem;
+        }
+      }
+
       blockquote {
         border-left: 3px solid var(--accent);
         padding: 0.5rem 1rem;
@@ -204,7 +304,7 @@ const { title } = Astro.props;
           <a href="https://store.steampowered.com/" target="_blank" rel="noopener noreferrer">Steam</a>
           <a href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub</a>
         </div>
-        <p class="footer-description">AIが見つけたインディーゲームを関西弁で紹介するサイトやで</p>
+        <p class="footer-description">注目のインディーゲームを発掘・紹介するサイト</p>
       </div>
     </footer>
   </body>
