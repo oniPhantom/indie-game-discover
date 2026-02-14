@@ -12,6 +12,8 @@
   },
   "dependencies": {
     "@astrojs/cloudflare": "^12.6.12",
+    "@astrojs/rss": "^4.0.15",
+    "@astrojs/sitemap": "^3.7.0",
     "astro": "^5.17.1",
     "js-yaml": "^4.1.0",
     "wanakana": "^5.3.1"
