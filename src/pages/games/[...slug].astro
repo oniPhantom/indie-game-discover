@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content';
 import GameLayout from '../../layouts/GameLayout.astro';
 import GameDetailHero from '../../components/GameDetailHero.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
+import ShareButtons from '../../components/ShareButtons.astro';
 import RelatedGames from '../../components/RelatedGames.astro';
 
 export async function getStaticPaths() {
@@ -21,14 +22,46 @@ const breadcrumbItems = [
   { label: 'ホーム', href: '/' },
   { label: game.data.title },
 ];
+
+// 現在のページURL
+const currentUrl = Astro.url.href;
+
+// 構造化データ（JSON-LD）
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "VideoGame",
+  "name": game.data.title,
+  "image": game.data.headerImage,
+  "genre": game.data.genres,
+  "offers": {
+    "@type": "Offer",
+    "price": game.data.price,
+    "priceCurrency": "JPY"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": game.data.reviewPercentage,
+    "bestRating": 100,
+    "worstRating": 0
+  },
+  "author": {
+    "@type": "Organization",
+    "name": game.data.developer
+  },
+  "datePublished": game.data.releaseDate
+};
 ---
 
 <GameLayout title={game.data.title}>
+  <!-- 構造化データ（JSON-LD） -->
+  <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+
   <Breadcrumb items={breadcrumbItems} />
   <GameDetailHero title={game.data.title} headerImage={game.data.headerImage} />
   <div class="game-content">
     <Content />
   </div>
+  <ShareButtons title={game.data.title} url={currentUrl} />
   <RelatedGames
     currentSlug={game.id}
     currentGenres={game.data.genres}
