@@ -9,3 +9,9 @@ review_translation:
   temperature: 0.85       # 暴走を少し抑制
   max_tokens: 300          # 3〜5文なら300で十分
   prompt_file: "prompts/review-kansai.md"
+
+kansai_highlights:
+  model: "openai/gpt-4o-mini"
+  temperature: 0.85       # 関西弁の自然さを保つ
+  max_tokens: 500         # 3段落程度
+  prompt_file: "prompts/kansai-highlights.md"

@@ -2,13 +2,13 @@
 
 import { fetchNewIndieGames, fetchPopularIndieGames, fetchGameDetails, fetchGameReviews } from "./steam.js";
 import { getPromptForTask } from "./prompt-loader.js";
-import { generateGameIntro, translateReviewToKansai } from "./generator.js";
+import { generateKansaiHighlights } from "./generator.js";
 import {
   buildArticle,
   saveArticle,
   generateSlug,
   type ArticleData,
-  type KansaiReview,
+  type EnglishReview,
 } from "./article-builder.js";
 import { loadState, saveState, type FailedApp } from "./state.js";
 
@@ -85,10 +85,7 @@ async function main(): Promise<void> {
   );
 
   // 2. プロンプト読み込み
-  const [introPrompt, reviewPrompt] = await Promise.all([
-    getPromptForTask("game_intro"),
-    getPromptForTask("review_translation"),
-  ]);
+  const highlightsPrompt = await getPromptForTask("kansai_highlights");
   console.log("[index] プロンプト読み込み完了");
 
   // 3. 新しいインディーゲーム一覧取得（Steam Store + SteamSpy をマージ）
@@ -178,42 +175,28 @@ async function main(): Promise<void> {
         continue;
       }
 
-      // 5c. AI紹介文生成
-      console.log("[index] AI紹介文を生成中...");
-      const generatedIntro = await generateGameIntro(
-        details,
-        introPrompt.prompt,
-        introPrompt.config,
+      // 5c. 関西弁おもろいポイント生成
+      console.log("[index] 関西弁おもろいポイントを生成中...");
+      const kansaiHighlights = await generateKansaiHighlights(
+        selectedReviews,
+        highlightsPrompt.prompt,
+        highlightsPrompt.config,
       );
       await sleep(API_DELAY);
 
-      // 5d. レビューを関西弁に翻訳
-      console.log(
-        `[index] ${selectedReviews.length} 件のレビューを関西弁に翻訳中...`,
-      );
-      const kansaiReviews: KansaiReview[] = [];
-
-      for (const review of selectedReviews) {
-        const translated = await translateReviewToKansai(
-          review.reviewText,
-          reviewPrompt.prompt,
-          reviewPrompt.config,
-        );
-        kansaiReviews.push({
-          original: review.reviewText,
-          translated,
-          playtimeHours: review.playtimeHours,
-          votedUp: review.votedUp,
-        });
-        await sleep(API_DELAY);
-      }
+      // 5d. 英語レビューをEnglishReview型に変換
+      const englishReviews: EnglishReview[] = selectedReviews.map((r) => ({
+        reviewText: r.reviewText,
+        playtimeHours: r.playtimeHours,
+        votedUp: r.votedUp,
+      }));
 
       // 5e. 記事を組み立て
       console.log("[index] 記事を組み立て中...");
       const articleData: ArticleData = {
         ...details,
-        generatedIntro,
-        kansaiReviews,
+        englishReviews,
+        kansaiHighlights,
       };
       const markdown = buildArticle(articleData);
 

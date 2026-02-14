@@ -128,3 +128,15 @@ export async function translateReviewToKansai(
 ): Promise<string> {
   return generateText(systemPrompt, review, config);
 }
+
+/**
+ * ユーザーレビュー配列をもとに、関西弁で「ここがおもろい！」解説を生成する。
+ */
+export async function generateKansaiHighlights(
+  reviews: Array<{ reviewText: string; votedUp: boolean }>,
+  systemPrompt: string,
+  config: ModelConfig,
+): Promise<string> {
+  const reviewsText = reviews.map((r) => r.reviewText).join("\n---\n");
+  return generateText(systemPrompt, reviewsText, config);
+}

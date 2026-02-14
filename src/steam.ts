@@ -15,6 +15,7 @@ export interface GameDetails {
   appId: number;
   name: string;
   description: string;
+  detailedDescription: string;
   genres: string[];
   tags: string[];
   price: string;
@@ -270,6 +271,9 @@ export async function fetchGameDetails(
     name: typeof d.name === "string" ? d.name : "",
     description: typeof d.short_description === "string"
       ? d.short_description
+      : "",
+    detailedDescription: typeof d.detailed_description === "string"
+      ? d.detailed_description
       : "",
     genres: genres?.map((g) => g.description) ?? [],
     tags: categories?.map((c) => c.description) ?? [],

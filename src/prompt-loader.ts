@@ -15,6 +15,7 @@ export interface ModelConfig {
 export interface PromptConfig {
   game_intro: ModelConfig;
   review_translation: ModelConfig;
+  kansai_highlights: ModelConfig;
 }
 
 // ── プロジェクトルート ──────────────────────────
@@ -49,7 +50,7 @@ export async function loadPrompt(promptFile: string): Promise<string> {
  * taskType に対応するプロンプト文字列と ModelConfig を返す
  */
 export async function getPromptForTask(
-  taskType: "game_intro" | "review_translation",
+  taskType: "game_intro" | "review_translation" | "kansai_highlights",
 ): Promise<{ prompt: string; config: ModelConfig }> {
   const promptConfig = await loadPromptConfig();
   const config = promptConfig[taskType];

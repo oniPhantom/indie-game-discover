@@ -7,9 +7,8 @@ import { toRomaji } from "wanakana";
 
 // ── 型定義 ─────────────────────────────────────
 
-export interface KansaiReview {
-  original: string;
-  translated: string;
+export interface EnglishReview {
+  reviewText: string;
   playtimeHours: number;
   votedUp: boolean;
 }
@@ -18,6 +17,7 @@ export interface ArticleData {
   appId: number;
   name: string;
   description: string;
+  detailedDescription: string;
   genres: string[];
   tags: string[];
   price: string;
@@ -26,8 +26,8 @@ export interface ArticleData {
   headerImage: string;
   reviewScore: string;
   reviewPercentage: number;
-  generatedIntro: string;
-  kansaiReviews: KansaiReview[];
+  englishReviews: EnglishReview[];
+  kansaiHighlights: string;
 }
 
 // ── プロジェクトルート ──────────────────────────
@@ -90,7 +90,7 @@ export function buildArticle(data: ArticleData): string {
     `| Steam評価 | ${reviewDisplay} |`,
   ].join("\n");
 
-  const reviews = data.kansaiReviews
+  const reviews = data.englishReviews
     .map((r, i) => formatReview(r, i))
     .join("\n\n");
 
@@ -102,13 +102,17 @@ export function buildArticle(data: ArticleData): string {
 
 ${infoTable}
 
-## 💡 このゲームの魅力
+## 公式説明
 
-${data.generatedIntro}
+${data.detailedDescription}
 
-## 💬 ユーザーレビュー（関西弁）
+## ユーザーレビュー
 
 ${reviews}
+
+## ここがおもろい！
+
+${data.kansaiHighlights}
 
 ---
 
@@ -133,24 +137,24 @@ export async function saveArticle(
 
 // ── ヘルパー ───────────────────────────────────
 
-function formatReview(review: KansaiReview, index: number): string {
+function formatReview(review: EnglishReview, index: number): string {
   const emoji = review.votedUp ? "👍" : "👎";
-  const sentiment = review.votedUp ? "おすすめ" : "おすすめせえへん";
+  const sentiment = review.votedUp ? "Recommended" : "Not Recommended";
   const playtimeLabel = getPlaytimeLabel(review.playtimeHours);
   return [
-    `### ${emoji} レビュー${index + 1}（${sentiment}）`,
+    `### ${emoji} Review ${index + 1} (${sentiment})`,
     ``,
-    `> ${review.translated}`,
+    `> ${review.reviewText}`,
     ``,
-    `🕐 ${review.playtimeHours}時間プレイ ${playtimeLabel}`,
+    `🕐 ${review.playtimeHours} hours played ${playtimeLabel}`,
   ].join("\n");
 }
 
 function getPlaytimeLabel(hours: number): string {
-  if (hours >= 500) return "（廃人級）";
-  if (hours >= 100) return "（ベテラン）";
-  if (hours >= 30) return "（じっくり派）";
-  if (hours >= 10) return "（そこそこ）";
+  if (hours >= 500) return "(Hardcore)";
+  if (hours >= 100) return "(Veteran)";
+  if (hours >= 30) return "(Experienced)";
+  if (hours >= 10) return "(Moderate)";
   return "";
 }
 
