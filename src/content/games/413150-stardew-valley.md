@@ -2,127 +2,59 @@
 title: "Stardew Valley"
 appId: 413150
 genres: ["インディー", "RPG", "シミュレーション"]
-price: "¥ 1,480"
+price: "$14.99"
 releaseDate: "2016年2月26日"
 developer: "ConcernedApe"
-reviewScore: ""
-reviewPercentage: 89
+reviewScore: "圧倒的に好評"
+reviewPercentage: 99
 headerImage: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/413150/header.jpg?t=1754692865"
-generatedAt: "2026-02-11T16:47:10.692Z"
-kansaiCatch: "畑耕して、釣りして、恋して。田舎暮らしが最高すぎるねん"
+kansaiCatch: "気づいたら農場の夢中になってもうたわ！"
+generatedAt: "2026-02-19T03:48:30.455Z"
 ---
 
-# Stardew Valley
+# 🎮 Stardew Valley
 
 ![Stardew Valley](https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/413150/header.jpg?t=1754692865)
 
 | 項目 | 詳細 |
 |------|------|
 | ジャンル | インディー, RPG, シミュレーション |
-| 価格 | ¥ 1,480 |
+| 価格 | $14.99 |
 | リリース日 | 2016年2月26日 |
 | 開発者 | ConcernedApe |
-| Steam評価 |  (89%) |
+| Steam評価 | 圧倒的に好評 (99%) |
 
-## このゲームの魅力
+## 公式説明
 
-「スターデュー バレー」は、心温まる田舎生活を体験できるシミュレーションRPGです。プレイヤーは祖父から受け継いだ古びた農場を舞台に、自給自足の生活を楽しみつつ、農業や釣り、採掘、さらには人間関係の構築に挑むことになります。初めは使い古された道具とわずかな資金しか持たないあなたが、次第に自分だけの理想の農場を作り上げていく過程は、まるで夢のような体験。新しい作物を育てたり、友人と交流したりする中で、日常の中に小さな冒険が詰まっています。
-
-グラフィックはレトロなピクセルアートで、どこか懐かしさを感じる一方、音楽は心を癒してくれるメロディーが印象的です。もし「どうぶつの森」や「牧場物語」が好きなら、間違いなくこのゲームにもハマることでしょう。自分のペースで進めることができるため、ストレスから解放されるひとときを提供してくれます。草木が生い茂る美しい土地で、あなたの農場を繁栄させる旅に出かけてみませんか？
-
-やり込み要素の豊富さも本作の大きな魅力です。農業では季節ごとに異なる作物を育て、品質を高めて出荷するだけでなく、ワインやジャムなどの加工品を作って利益を最大化する戦略性があります。畜産ではニワトリ、牛、ヤギ、ヒツジなどを飼育し、卵やミルクを収穫。釣りは魚ごとに異なる引きの強さがあり、伝説の魚を釣り上げる達成感は格別です。鉱山では階層を掘り進めながらモンスターと戦い、貴重な鉱石や宝石を手に入れます。料理やクラフトのレシピも膨大で、すべてを網羅しようとすれば何百時間でも遊べるボリュームです。
-
-スターデュー バレーの町には30人以上の個性的な住民が暮らしており、一人一人に固有のストーリーと背景があります。住民との友好度を上げることでハートイベントが発生し、彼らの意外な一面や心の内を知ることができます。12人の独身キャラクターの中から結婚相手を選ぶこともでき、結婚後は一緒に農場で暮らし、子供を授かることも可能です。住民たちの人間関係や町の秘密が少しずつ明かされていく過程は、まるで一つの群像劇を見ているかのようです。
-
-マルチプレイにも対応しており、最大4人で同じ農場を共有して遊ぶことができます。友人と役割分担して効率的に農場を運営したり、一緒に鉱山を探索したり、釣り大会に参加したりと、ソロプレイとはまた違った楽しみ方が広がります。協力して大規模な農場を作り上げる達成感は、マルチプレイならではの体験です。
-
-開発者のConcernedApe（Eric Barone氏）はリリース後も精力的にアップデートを続けており、大型アップデート1.6では新たな農場タイプ、新しい祭り、追加のアイテムやレシピ、そして数多くのクオリティ・オブ・ライフ改善が実装されました。買い切りのゲームでありながら無料で大規模なコンテンツ追加が行われる姿勢は、多くのプレイヤーから高く評価されています。発売から10年近く経った今でもコミュニティは活発で、MODによるカスタマイズも盛んに行われています。
-
-## ここがおもろい！
-
-まず知っといてほしいんやけど、このゲーム、たった1人で作られてんねん。グラフィック、音楽、プログラム、ストーリー、全部ConcernedApeっていう1人の開発者がやったんよ。それであのクオリティやろ？ほんまに信じられへんわ。インディーゲームの歴史に残るレベルの偉業やと思うで。
-
-で、このゲームの一番ヤバいとこは中毒性やねん。「今日はもう寝よう」って思っても、「あ、でも明日カボチャの収穫やし、もう1日だけ...」ってなるんよ。気づいたら朝の4時とかザラや。時間泥棒にもほどがあるで。「あと1日だけ」が永遠に終わらんのが、このゲームのほんまに恐ろしいところやねん。
-
-住民のストーリーがまためっちゃ深いんよな。最初は「なんやこの無愛想なやつ」って思ってた住民が、仲良くなるにつれてめちゃくちゃ重い過去を打ち明けてきたりするねん。シェーンのアルコール依存の話とか、ほんまに泣けるで。ただの農業ゲームやと思ったら大間違いで、人間ドラマがしっかり描かれてるのがこのゲームのすごいところや。
-
-季節ごとのイベントもおもろいねん。春のエッグフェスティバル、夏のルアウ、秋のスターデューバレーまつり、冬の氷祭り。それぞれ住民と一緒に楽しめるミニゲームや特別なやり取りがあって、季節が変わるのがほんまに待ち遠しくなるんよ。花の舞のダンスで好きな住民を誘うときのドキドキ感とか、たまらんで。
-
-ほんで最後に言わせてもらうけど、これ1480円やねんで？何百時間も遊べて1480円。しかもセールの時はもっと安くなるし、追加課金もゼロ。コスパがえげつないわ。ゲーム1本で数千円、数万円が当たり前の時代に、このボリュームでこの値段はほんまにありがたいとしか言いようがないで。迷ってるなら今すぐ買い。絶対に後悔せえへんから。
+<span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/413150/extras/4aa7123b7bff518a6c3b640f51feb310.avif?t=1754692865" width=600 height=105 /></span><br><br>「スターデュー バレー」で、プレイヤーは祖父から古い農場を受け継ぎます。使い古された道具と少しのお金を手に、新たな生活を始めましょう。自給自足の生活で生き抜く術を学び、草木の生い茂る土地を繁栄させることができるでしょうか？もちろん簡単ではありません。Jojaコーポレーションが町に来てからというもの、古いやり方は通用しなくなってしまいました。かつて町の中心部として栄えた公民館は今や荒れ放題。でも、谷にはたくさんのチャンスが溢れているようです。ほんの少しの頑張りで、スターデュー バレーを元の元気な谷に戻せるかもしれません！<br><br>---<br><br><strong>Features </strong><br><ul class="bb_ul"><li><strong>Turn your overgrown field into a lively farm!  </strong> Raise animals, grow crops, start an orchard, craft useful machines, and more! You'll have plenty of space to create the farm of your dreams. <br><br></li><li><strong>Improve your skills over time. </strong> As you make your way from a struggling greenhorn to a master farmer, you'll level up in 5 different areas: farming, mining, combat, fishing, and foraging. As you progress, you'll learn new cooking and crafting recipes, unlock new areas to explore, and customize your skills by choosing from a variety of professions. <br><br></li><li><strong>Become part of the local community. </strong> With over 30 unique characters living in Stardew Valley, you won't have a problem finding new friends! Each person has their own daily schedule, birthday, unique mini-cutscenes, and new things to say throughout the week and year. As you make friends with them, they will open up to you, ask you for help with their personal troubles, or tell you their secrets! Take part in seasonal festivals such as the luau, haunted maze, and feast of the winter star. <br><br></li><li><strong>Explore a vast, mysterious cave. </strong> As you travel deeper underground, you'll encounter new and dangerous monsters, powerful weapons, new environments, valuable gemstones, raw materials for crafting and upgrading tools, and mysteries to be uncovered. <br><br></li><li><strong>Breathe new life into the valley.</strong> Since JojaMart opened, the old way of life in Stardew Valley has changed. Much of the town's infrastructure has fallen into disrepair. Help restore Stardew Valley to it's former glory by repairing the old community center, or take the alternate route and join forces with Joja Corporation.<br><br></li><li><strong>Court and marry a partner to share your life on the farm with. </strong> There are 10 available bachelors and bachelorettes to woo, each with unique character progression cutscenes. Once married, your partner will live on the farm with you. Who knows, maybe you'll have kids and start a family?<br><br></li><li><strong>Spend a relaxing afternoon at one of the local fishing spots. </strong> The waters are teeming with seasonal varieties of delicious fish. Craft bait, bobbers, and crab pots to help you in your journey toward catching every fish and becoming a local legend! <br><br></li><li><strong>Donate artifacts and minerals to the local museum. </strong><br><br></li><li><strong>Cook delicious meals and craft useful items to help you out.  </strong>With over 100 cooking and crafting recipes, you'll have a wide variety of items to create. Some dishes you cook will even give you temporary boosts to skills, running speed, or combat prowess. Craft useful objects like scarecrows, oil makers, furnaces, or even the rare and expensive crystalarium. <br><br></li><li><strong>Customize the appearance of your character and house. </strong> With hundreds of decorative items to choose from, you'll have no trouble creating the home of your dreams!<br><br></li><li><strong>Xbox controller support (with rumble)! (Keyboard still required for text input) </strong><br><br></li><li><strong>Over two hours of original music. </strong></li></ul>
 
 ## ユーザーレビュー
 
-> ⭐ "なんか、ヤバいもんやで！安いのに音楽もめっちゃええし、もうハマること間違いなしや！10点満点でおすすめやで！しかも、レアちゃんはほんまにカッコええし、最高やん！"
->
-> — プレイ時間: 191時間
+### 👍 Review 1 (Recommended)
 
-> ⭐ "---{ グラフィック }---
-☐ 現実なんか忘れさせるわ
-☐ めっちゃキレイ
-☑ いい感じやで
-☐ そこそこ
-☐ あかん
-☐ 見すぎたらあかんで
-☐ MS-DOSみたいなん
+> Stardew has gotten me through some of the worst depression I have ever been in. It's a "cozy" game but it does everything right. It's gentle, it's easy to play in the background, it's relaxing, it's not *completely* insultingly unchallenging. It's a fun, sweet little game. You already know all this though don't you?
 
----{ ゲームプレイ }---
-☑ めっちゃ良いで
-☐ いい感じ
-☐ まぁ普通やな
-☐ メッ
-☐ ペンキが乾くの見る方がマシや
-☐ やらん方がええで
+🕐 206 hours played (Veteran)
 
----{ 音声 }---
-☐ 耳が気持ち良すぎや
-☑ めっちゃ良い
-☐ 良い
-☐ まあまあ悪くない
-☐ あかん
-☐ 今、耳が聞こえへん
+### 👍 Review 2 (Recommended)
 
----{ 対象年齢 }---
-☑ 子供
-☑ ティーン
-☑ 大人
-☐ おばあちゃん
+> This is one of the best games ever made by one person, Eric Barone. At first, I didn’t understand why people got hooked on it, but you have to be patient and enjoy building your farm over time until you want to unlock everything. Or you can give up and play something else that takes less time to reward yourself.
 
----{ PC 要件 }---
-☐ ペンキが動くか確認して
-☑ ポテトやで
-☐ まぁまぁ
-☐ 速い
-☐ お金持ち
-☐ NASAに余ったパソコン持ってるか聞いてみて
+🕐 186 hours played (Veteran)
 
----{ ゲームサイズ }---
-☐ フロッピーディスクみたい
-☑ 昔ながらの感じ
-☐ 使える
-☐ デカい
-☐ 1TBのハードディスクの10%を食うで
-☐ これを入れるためにハードディスク全部必要や
-☐ データ全部入れるにはブラックホールに投資せなあかんわ
+### 👍 Review 3 (Recommended)
 
----{ 難易度 }---
-☐ 'W'押すだけや
-☐ 簡単
-☑ 学ぶのは簡単やけど、マスターするのは難しいで
-☐ 結構頭使うで
-☐ 難しい
-☐ ダークソウルやんけ
+> honestly love this game, been playing it on so many different platforms for years it's such a chill and cosy game, got me through depression was like free therapy, recommend 10/10
 
----{ ストーリー }---
-☐ ストーリーなし
-☐ ちょっとした設定
-☐ 普通
-☐"
->
-> — プレイ時間: 155時間
+🕐 97 hours played (Experienced)
 
-> ⭐ "スターデューバレー、ほんまに最高やで！あんなん、俺の鬱の時期を支えてくれたゲームや。めっちゃ“コージー”で、ほんまにやりやすいし、のんびりできるんよな。難しすぎひんし、楽しい要素もちゃんとあって、ほんまに甘いゲームやで！あんたもそう思うやろ？"
->
-> — プレイ時間: 205時間
+## ここがおもろい！
+
+この『Stardew Valley』は、ほんまに心の癒しやで。プレイヤーたちが「辛い時期を乗り越えさせてくれた」って声が多いんや。コージーな雰囲気でリラックスできるし、背景でプレイしやすいから、日常のストレスを忘れさせてくれるんやな。難易度も絶妙で、全然やりがいないわけでもないから、ちょうどええ感じやで。
+
+エリック・バローネが一人で作ったゲームってほんまにすごいわ。最初は「何がそんなにおもろいん？」って思うかもしれんけど、じっくり農場を育てていく過程がまた楽しんや。全てを unlock するには時間がかかるけど、その時間を楽しむのがポイントやねん。すぐに結果を求めるんやなくて、マイペースで進めるのが大事なんや。
+
+このゲームは「無料のセラピー」って言われるぐらい、リラックス効果が抜群や。何年も色んなプラットフォームで遊んでる人が多いみたいやし、ほんまにおすすめやわ。興味があるなら、迷わずプレイするべきやで！
 
 ---
 

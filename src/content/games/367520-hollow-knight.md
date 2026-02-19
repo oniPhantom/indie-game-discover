@@ -2,79 +2,59 @@
 title: "Hollow Knight"
 appId: 367520
 genres: ["アクション", "アドベンチャー", "インディー"]
-price: "¥ 1,700"
+price: "$14.99"
 releaseDate: "2017年2月24日"
 developer: "Team Cherry"
-reviewScore: ""
-reviewPercentage: 87
+reviewScore: "圧倒的に好評"
+reviewPercentage: 97
 headerImage: "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/367520/3c3489495136b26b34f8a9543c7f5645b99d388c/header.jpg?t=1770338567"
-generatedAt: "2026-02-11T16:46:15.628Z"
-kansaiCatch: "地下王国ホロウネスト、美しくて残酷な冒険が待っとるで"
+kansaiCatch: "虫たちの王国で、冒険が待ち受けてるで！"
+generatedAt: "2026-02-19T03:48:08.233Z"
 ---
 
-# Hollow Knight
+# 🎮 Hollow Knight
 
 ![Hollow Knight](https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/367520/3c3489495136b26b34f8a9543c7f5645b99d388c/header.jpg?t=1770338567)
 
 | 項目 | 詳細 |
 |------|------|
 | ジャンル | アクション, アドベンチャー, インディー |
-| 価格 | ¥ 1,700 |
+| 価格 | $14.99 |
 | リリース日 | 2017年2月24日 |
 | 開発者 | Team Cherry |
-| Steam評価 |  (87%) |
+| Steam評価 | 圧倒的に好評 (97%) |
 
-## このゲームの魅力
+## 公式説明
 
-「Hollow Knight」は、Team Cherryが手掛けた美しい手描きの2Dアクションアドベンチャーゲームです。プレイヤーは、英雄となり、神秘的なムシたちが住む広大な王国「ホロウネスト」を探索しながら、忘れられた秘密や深いストーリーを解き明かしていきます。曲がりくねった洞窟や神秘的な遺跡、そして個性的なキャラクターたちとの出会いが、あなたを魅惑的な冒険へと誘います。
-
-この作品の魅力は、緻密にデザインされた世界と、手に汗握る戦闘システムにあります。スムーズなアクションと、タイミングを要するボス戦は、まるで「ダークソウル」や「メトロイドヴァニア」系のゲームが好きな方にはたまらない体験です。探索することで得られる新たな能力や武器は、プレイヤー自身の成長を実感させ、より難易度の高いエリアへと挑む意欲を掻き立てます。
-
-探索の奥深さも特筆すべきポイントです。ホロウネストには140を超える部屋が存在し、そのひとつひとつが独自のビジュアルとギミックで構成されています。壁の隙間に隠された秘密の通路、特定の能力を手に入れてからようやくたどり着ける隠しエリア、そして40種類以上のチャームを集めて自分だけのビルドを組み立てる楽しさがあります。マップの端から端まで足を運ぶたびに、新たな発見が待ち受けているのです。
-
-戦闘システムもまた、このゲームの核心を成す要素です。敵を攻撃して得る「ソウル」はHPの回復手段であると同時に、強力な魔法攻撃のリソースでもあり、攻めるか守るかの判断が常に求められます。チャームの組み合わせによって、近接特化・魔法特化・回復重視といった多彩なプレイスタイルが可能になり、同じボスでもまったく違うアプローチで攻略できます。40体以上のボスはそれぞれ固有の攻撃パターンを持ち、何度も挑戦して動きを覚え、ついに倒した瞬間の達成感は格別です。
-
-また、壮大なサウンドトラックと美しいアートスタイルが、ホロウネストの独特な雰囲気を一層引き立てています。何度も訪れたくなる場所があり、さらなる発見が待っていることを想像してみてください。多彩なムシたちとの出会いや、思わぬ展開が次々と繰り広げられるこのゲームは、探索と冒険の楽しさを存分に味わえるでしょう。メトロイドヴァニアというジャンルにおいて、レベルデザイン・アクション・世界観・ボリュームのすべてが最高水準で融合した、まさにジャンルの到達点と呼べる一作です。
-
-## ここがおもろい！
-
-正直な話、このゲームはほんまにヤバい。何がヤバいかって、まず世界観よ。「虫の王国」って聞いたら「え、虫？」ってなるやん？ でもな、実際にプレイしてみたら、その虫たちの王国がめっちゃ美しくて、めっちゃ切ないねん。滅びかけた文明の残り香が漂う街並み、かつての栄光を偲ばせる建造物、そして静かに佇むNPCたち。ホロウネストっていう世界そのものが、ひとつの壮大な物語になっとるんよ。
-
-ボス戦の話もせなあかんわ。このゲーム、最初は「なんやこれ、無理やろ」って思うボスがゴロゴロおるねん。特にグリム一座のナイトメア・キング・グリムとか、ゴッドマスターの万神殿とか、もう心折れそうになるで。でもな、何回も挑んで、相手の動きを覚えて、ギリギリで勝てた瞬間の快感がほんまにたまらんのよ。コントローラー握りしめて「よっしゃああ！」って叫んでまうやつ、絶対おるはずやわ。
-
-探索もめっちゃおもろいねん。「もうマップ全部見たやろ」って思ってたら、壁の裏にまだ道があったり、二段ジャンプ覚えてから前に行けんかったとこに戻ったら新しいエリアがドーンと広がってたり。「あっ、こんなとこあったんや！」っていう驚きが最後の最後まで続くんよ。しかも隠しエリアにはちゃんとストーリーに関わる重要な情報やアイテムが置いてあるから、見つけたときの満足感が段違いやねん。
-
-ほんで忘れたらあかんのが、無料DLCの充実度よ。「隠された夢」「グリム一座」「ゴッドマスター」「虚空の心臓」、全部無料で追加されとるんやで。特にグリム一座はストーリーもボスも最高やし、ゴッドマスターはやり込み派にとっては永遠に遊べるコンテンツや。これだけのボリュームを後から無料で追加するとか、Team Cherryの姿勢にはほんまに頭が下がるわ。
-
-最後にこれだけは言わせてくれ。このゲーム、1,700円やで？ 普通に50時間以上遊べて、やり込んだら100時間超えるようなゲームが1,700円。これはもう値段がバグっとるとしか言いようがないわ。インディーゲームの底力を見せつけられる一作やから、ちょっとでも気になっとるんやったら、迷わず買い。後悔だけは絶対せえへんから。
+<h2 class="bb_tag" >無料コンテンツによってホロウナイトの世界がさらに豊かに</h2><p class="bb_paragraph" ><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/367520/extras/d75d87a5972b643fea3b965d0d78ec26.avif?t=1770338567" width=777 height=124 /></span></p><ul class="bb_ul"><li><p class="bb_paragraph" ><strong>神を求む者</strong></p></li><li><p class="bb_paragraph" ><strong>生命の血</strong></p></li><li><p class="bb_paragraph" ><strong>グリム巡業団</strong> - 悪夢のランタンに火を灯し、巡業団を召喚せよ。新しいクエスト、新しいボス、新しいチャーム、新しいキャラクターが登場！</p></li></ul><ul class="bb_ul"><li><p class="bb_paragraph" ><strong>隠された夢</strong> - 強力な敵、ボス戦、アップグレード、音楽が新たに追加！</p></li></ul><h2 class="bb_tag" >忘れられた王国の深部への旅</h2><p class="bb_paragraph" >寂れた町ダートマウスの地下に眠る、崩壊した王国“ハロウネスト”。多くの者が富や栄光、あるいは古の秘密の答えを求めて地下へとおりていきました。 </p><p class="bb_paragraph" >『Hollow Knight（ホロウナイト）』は伝統的な2Dスタイルで展開する、アクションアドベンチャーゲームです。プレイヤーは曲がりくねった洞穴や古代都市、危険な荒れ地などが絡まり合うようにして構成される広大な世界を冒険していきます。汚染された生物と戦い、ちょっと変わったムシたちと交流しながら、王国の中枢に秘められた太古の秘密を解き明かしましょう。 </p><p class="bb_paragraph" ></p><p class="bb_paragraph" ><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/367520/extras/8d2445ded36db098684f48ba7dd60c00.avif?t=1770338567" width=776 height=192 /></span></p><p class="bb_paragraph" style="text-align: center"><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/367520/extras/047b6db17af596cbe46a169e61120c9b.webp?t=1770338567" width=616 height=32 /></span></p><h2 class="bb_tag" >ゲームの特徴</h2><ul class="bb_ul"><li><p class="bb_paragraph" >伝統的なスタイルに現代的なテイストを加えた、横スクロールアクション。</p></li><li><p class="bb_paragraph" >精密に調整された2Dアクション。回避、ダッシュ、攻撃を駆使して、強力な敵を攻略しましょう。</p></li><li><p class="bb_paragraph" >忘れられた道や、緑の生い茂った土地、廃墟となった都市など、様々な場所が絡まり合うようにして構成される、広大な世界。</p></li><li><p class="bb_paragraph" >ハロウネストは探索の可能性に満ちた広大な土地。どの道を選び、どの敵と戦うか、すべてはあなた次第です。自らのやり方で道を切り開きましょう。</p></li><li><p class="bb_paragraph" >強力なスキルと能力を覚えてキャラクターを強化！　冒険の途中であなたは様々なスキルや移動能力を得ることができます。神秘的な翼によってさらなる高みへと到達し、火の玉のように前方に跳躍し、ソウルの塊を放って敵を攻撃しましょう！</p></li><li><p class="bb_paragraph" >チャームを身につけてパワーアップ！　古代の遺物であるチャームを用いることで、様々なユニークな能力を得ることができます。自分好みのチャームを選んで、ユニークなプレイスタイルを確立しましょう！</p></li><li><p class="bb_paragraph" >伝統的なコマ割り手法の2Dアニメーションによって描かれる、可愛らしくて不気味なキャラクターたちが多数登場。</p></li><li><p class="bb_paragraph" >130種類以上の敵と30種類のボスが登場！　王国を冒険する中で、あなたは獰猛な怪物や古の騎士など様々な敵と遭遇します。すべての敵を見つけ出して「狩猟者の記録」を完成させましょう！</p></li><li><p class="bb_paragraph" >「夢見の釘」を使って他者の心の中に入り込む！　出会ったムシや敵の新たな側面を明らかにしましょう。</p></li><li><p class="bb_paragraph" >遠近を表現しつつ描かれ、平面ながら独特の奥行を感じさせる美しい風景。</p></li><li><p class="bb_paragraph" >様々な道具を駆使して、冒険の地図を作成！　コンパスや羽ペン、ピンなどを活用することで、『Hollow Knight』の入り組んだ世界をより深く理解することができます。</p></li><li><p class="bb_paragraph" >冒険をときに恐ろし気に、ときに優しく彩る、クリストファー・ラーキン作曲の音楽。その音色からあなたは崩壊した文明の哀しみと壮大さを感じることでしょう。</p></li><li><p class="bb_paragraph" >ゲームをクリアすると、究極のチャレンジである「スティールソウル・モード」がアンロック！</p></li></ul><p class="bb_paragraph" ></p><p class="bb_paragraph" ><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/367520/extras/dcbb9c67ba2ace9a3af9ba1f9bb1eba0.avif?t=1770338567" width=776 height=192 /></span><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/367520/extras/e442491219a625e3ad17e52fa3e56d37.avif?t=1770338567" width=776 height=192 /></span></p><p class="bb_paragraph" style="text-align: center"><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/367520/extras/047b6db17af596cbe46a169e61120c9b.webp?t=1770338567" width=616 height=32 /></span></p><h2 class="bb_tag" >感情を喚起させる手造りの世界</h2><p class="bb_paragraph" >『Hollow Knight』の世界は薄暗く、かつ瑞々しいタッチによって描かれており、その洞穴内は伝統的な2Dスタイルによって命を吹き込まれた、奇妙で恐ろしい生物で満ちています。</p><p class="bb_paragraph" ></p><p class="bb_paragraph" ></p><p class="bb_paragraph" >各エリアにはそれぞれ独特で固有の美しさがあり、新しいキャラクターや敵で満ちています。様々な風景を堪能しつつ、目の届かぬところに隠された秘密を見つけ出しましょう。</p><p class="bb_paragraph" ></p><p class="bb_paragraph" >もしあなたが伝統的なゲームプレイや、可愛くて不気味なキャラクターや、壮大な冒険や、暗くてしかし美しい世界を好むなら、きっと『Hollow Knight』をお楽しみいただけるでしょう！</p><p class="bb_paragraph" ></p><p class="bb_paragraph" ><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/367520/extras/a90d9e5896af7e5001b81fbbe8eb4851.avif?t=1770338567" width=776 height=192 /></span><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/367520/extras/50a50e525a5d3e7a67cf89752e91f760.avif?t=1770338567" width=776 height=192 /></span><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/367520/extras/b9cdb09359f1d178d748da327e009d36.avif?t=1770338567" width=776 height=192 /></span><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/367520/extras/c9d1036c3c2804c0bb358dc26e146820.avif?t=1770338567" width=776 height=192 /></span><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/367520/extras/39e3c31e5fc78c8a2478b1b66978f6a0.avif?t=1770338567" width=776 height=264 /></span></p>
 
 ## ユーザーレビュー
 
-> ⭐ "## Hollow Knight
+### 👍 Review 1 (Recommended)
 
-[b]両方のゲームクリア後のレビュー[/b]  
-Hollow Knightっていうゲーム、メトロイドヴァニアの新しいスタンダード作ったんや。今でも他のゲームはこの影響受けてるし、Ninesolsみたいな傑作もあるから、絶対プレイすべきやで！俺はSilksongの後にこれやったから、二つの比較できておもろいわ。難易度言うたら、普通はこれ、Silksongよりめっちゃ簡単やな（神殿のDLC除くけど）！まぁ、Silksongやって上手になったんやと思うけど、それでも簡単なんは悪いことちゃうで。ヒーリングシステムは最初嫌いやったけど、神殿で練習したら、ボス戦にはめっちゃ合ってるなぁと思ったわ。
+> Not much can be said about Hollow Knight that hasn’t already been said. It’s a once in a lifetime experience and a flagship example of what a game crafted with passion can be. If you haven’t played it yet, I highly recommend giving it a try.
 
-[b]ボスは？[/b]  
-両方のゲームとも凄いボスがいて、最初のHollow Knightはボスが出てくるのがちょっと遅いかな。でもグリムとか純粋な器、ハロウィンナイトなんかが最高やで！  
-[b]音楽は？[/b]  
-音楽も両方とも素晴らしい！クリストファー・ラーキン、ほんまに大好きやわ。  
-[b]探索について？[/b]  
-探索はSilksongの方が圧倒的に好きやな。早いし動きが多いのも良いけど、地図が全然覚えられへんのが不思議やわ。  
-[b]経済について？[/b]  
-シルクソングは経済面最悪やな、ロザリオめっちゃ手に入らんし、進行止めてファーミングしなあかんのは萎えるわ。第一のHollow Knightがこの辺もっと上手くやってたで。  
-[b]ストーリーは？[/b]  
-もう、語るまでもないほど素晴らしいで！ほんま、俺より上手に"
->
-> — プレイ時間: 112時間
+🕐 97 hours played (Experienced)
 
-> ⭐ "まだゲーム終わってへんけど、グラブスめっちゃ可愛いな！ほんまに死なんといて欲しいわ、そしたらめっちゃ落ち込むやんか、笑。"
->
-> — プレイ時間: 28時間
+### 👍 Review 2 (Recommended)
 
-> ⭐ "Hollow Knightについてはもう言うことないぐらいやけど、ほんまに一生に一度の体験やで。情熱をかけて作られたゲームの代表格やな。まだプレイしてへんかったら、めっちゃやってみることをおすすめするで！"
->
-> — プレイ時間: 97時間
+> A cleverly designed world to explore, challenging but fair boss fights, and tough platforming challenges.  This game is the modern gold standard for a Metroidvania.
+
+🕐 50 hours played (Experienced)
+
+### 👎 Review 3 (Not Recommended)
+
+> Stop looking at bad reviews and play the game (spoiler-its good)
+
+🕐 119 hours played (Veteran)
+
+## ここがおもろい！
+
+「Hollow Knight」について言うことはあんまりないけど、ほんまに一度は体験せなあかんゲームやで。情熱を込めて作られた作品の代表例って言われてるくらいやから、プレイしたことないなら絶対にやってみてほしいわ。
+
+プレイヤーたちは「世界のデザインがめっちゃ巧妙や」「ボス戦が挑戦的やけど公平や」とか、「プラットフォームのチャレンジも鬼のように難しいけど、ちゃんと楽しめる」って感想が多いんよ。これが現代のメトロイドヴァニアの金字塔って声もあるくらい、めっちゃ評価されてるゲームやねん。
+
+悪いレビューなんか見ずに、さっさとゲームやってみいや（ネタバレやけど、ほんまにおもろいで）。このゲームをプレイせん手はないって、ガチで思うわ。
 
 ---
 
